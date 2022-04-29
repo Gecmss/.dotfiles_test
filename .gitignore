@@ -5,4 +5,8 @@ nvim/plugged
 nvim/session
 nvim/undodir
 
+# Ranger
+ranger/plugins
 
+# Qtile
+qtile/__pycache__
