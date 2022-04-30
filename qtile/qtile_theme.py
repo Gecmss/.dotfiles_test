@@ -7,7 +7,7 @@ from libqtile.utils import guess_terminal
 
 mod = 'mod4'
 net_device= 'enp2s0'
-terminal = 'alacritty'
+terminal = guess_terminal()
 
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
@@ -50,7 +50,7 @@ group_box = {
 }
 
 window_name = {
-    'text_color': '#020203', #BD93F9
+    'text_color': '#BD93F9',
     'background': '#020203',
     'max_chars': 32,
 }
@@ -150,7 +150,7 @@ keys = [
         lazy.layout.toggle_split(),
         desc='Toggle between split and unsplit sides of stack',
     ),
-    Key([mod], 'Return', lazy.spawn(terminal), desc='Launch terminal'),
+    Key([mod], 'Return', lazy.spawn('alacritty'), desc='Launch terminal'),
 
     # Toggle between different layouts as defined below
     Key([mod], 'Tab', lazy.next_layout(), desc='Toggle between layouts'),
@@ -177,7 +177,7 @@ keys = [
     Key([mod], 'b', lazy.spawn('firefox'), desc='Launch firefox'),
     
     # Ranger
-    Key([mod], 'f', lazy.spawn(terminal + ' -e ranger'), desc='Launch Ranger file explorer'),
+    Key([mod], 'f', lazy.spawn('alacritty -e ranger'), desc='Launch Ranger file explorer'),
 
     # Telegram 
     Key([mod], 't', lazy.spawn('telegram-desktop'), desc='Launch Telegram'),
@@ -195,7 +195,7 @@ keys = [
     Key([mod, 'control'], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
     # Nvim    
-    Key([mod], 'v', lazy.spawn(terminal + ' -e nvim'), desc='Launch Nvim'),
+    Key([mod], 'v', lazy.spawn('alacritty -e nvim'), desc='Launch Nvim'),
 
     # QuteBrowser    
     Key([mod], 'q', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),
@@ -352,8 +352,9 @@ screens = [
                     background=window_name['background'],
                     max_chars=window_name['max_chars']
                 ),
-
-
+                
+                
+                
 
                 # Group one
                 left_triangle(bar_theme['color'], group_colors[1]),
@@ -371,7 +372,7 @@ screens = [
                     fmt = '{}',
                     #measure_mem = "G",
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
-                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
+                    mouse_callbacks = {'Button1': lazy.spawn('alacritty -e htop')},
                 ),
                 widget.TextBox(
                     text="  ", # nf-oct-terminal
@@ -379,16 +380,15 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     mouse_callbacks={
-                        "Button1": lazy.spawn(terminal),
-                        "Button2": lazy.spawn(terminal + " -e tmux"),
+                        "Button1": lazy.spawn("alacritty"),
+                        "Button2": lazy.spawn("alacritty -e tmux"),
                         "Button3": lazy.spawn("xterm"),
                     }
                 ),
                 set_icon(" ", group_colors[1]),
                 # End Group one
-
-
-
+                
+                
                 # Group two
                 left_triangle(group_colors[1], group_colors[2]),
                 widget.Clock(
