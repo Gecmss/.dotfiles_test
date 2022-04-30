@@ -18,32 +18,34 @@ terminal = 'alacritty'
 
 fonts = {
     'default': 'Ubuntu Mono Nerd Font',
-    'powerline': 'Source Code Pro for Powerline',
+    'powerline': 'Source Code Pro',
     'size': 16
 }
 
 bar_theme = {
-    'color': '#020203',
+    'color': '#00000000', #020203
     'size': 24,
+    'margin': 4,
+    'border_width': 4,
 }
 
 theme = {
     'foreground': '#000000',
     'background': '#0A0E14',
-    'active': '#F1FA8C',
-    'inactive': '#6272A4',
+    'active': '#FEE05C',
+    'inactive': '#6840BB',
     'icon_size': 18,
 }
 
 group_box = {
     'foreground': '#000000',
-    'background': '#0A0E14',
-    'grab': True,
+    'background': '#000000',
+    'disable_grab': True,
     'highlight': 'text',
     'urgent': 'text',
     'urgent_color': '#FF5555',
     'this_current_screen_border': '#E1AD01',
-    'this_screen_border': '#BD93F9',
+    'this_screen_border': '#82930F',
     'other_current_screen_border': '#44435A',
     'other_screen_border': '#44435A',
     'border_width': 1,
@@ -51,20 +53,20 @@ group_box = {
 
 window_name = {
     'text_color': '#020203', #BD93F9
-    'background': '#020203',
+    'background': '#00000000',
     'max_chars': 32,
 }
 
 group_colors = {
-    1: '#BD93F9',
-    2: '#6272A4',
-    3: '#E1AD01',
-    4: '#F1FA8C',
+    1: '#7D78DE', #7D78DE
+    2: '#6840BB',
+    3: '#82930F', #82930F
+    4: '#FEE05C',
 }
 
 float_window = {
-    'focus': '#E1AD01',
-    'normal': '#0A0E14',
+    'focus': '#82930F',
+    'normal': '#6840BB',
     'border_width': 2,
     'margin': 6
 }
@@ -76,6 +78,13 @@ icons = {
     'updates': ' ',
     'speed': ' 龍 ',
     'volume': ' ',
+}
+
+layout_theme = {
+    'foreground': '#000000',
+    'background': '#990A0E14',
+    'active': '#99FEE05C',
+    'inactive': '#996840BB',
 }
 
 ##############################################################################
@@ -107,7 +116,7 @@ def right_triangle(ng_color, pg_color):
         font=fonts['powerline'],
         foreground=pg_color,
         background=ng_color,
-        padding=-0.1,
+        padding=-0.0,
     )
 
 def set_icon(icon, group_color):
@@ -284,14 +293,16 @@ layouts = [
     layout.Tile(
         border_focus=theme['active'],
         border_normal=theme['background'],
+        border_on_single=False,
         add_on_top=False,
-        border_width=2,
+        border_width=0,
         margin=8,
     ),
     layout.RatioTile(
         border_focus=theme['active'],
         border_normal=theme['background'],
-        border_width=1,
+        border_on_single=False,
+        border_width=0,
         fancy=True,
         margin=16,
     ),
@@ -328,13 +339,13 @@ screens = [
                     active=theme['active'],
                     inactive=theme['inactive'],
                     borderwidth=group_box['border_width'],
-                    disable_drag=True,
+                    disable_drag=group_box['disable_grab'],
                     fontsize=theme['icon_size'],
                     foreground=group_box['foreground'],
                     background=group_box['background'],
                     highlight_method=group_box['highlight'],
                     margin_x=0,
-                    margin_y=5,
+                    margin_y=3,
                     padding_x=0,
                     padding_y=10,
                     this_current_screen_border=group_box['this_current_screen_border'],
@@ -346,14 +357,20 @@ screens = [
                 ),
                 right_triangle(bar_theme['color'], group_box['background']),
                 separator(bar_theme['color']),
-                widget.Prompt(),
+                widget.Prompt(
+                    foreground=theme['foreground']
+                ),
                 widget.WindowName(
                     foreground=window_name['text_color'],
                     background=window_name['background'],
                     max_chars=window_name['max_chars']
                 ),
 
-
+                widget.Systray(
+                    icon_size=icons['size'],
+                    background=bar_theme['color'],
+                ),
+                separator(bar_theme['color']),
 
                 # Group one
                 left_triangle(bar_theme['color'], group_colors[1]),
@@ -369,22 +386,22 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     fmt = '{}',
-                    #measure_mem = "G",
+                    measure_mem = "G",
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
                 ),
                 widget.TextBox(
-                    text="  ", # nf-oct-terminal
+                    text='  ', # nf-oct-terminal
                     fontsize=icons['size'],
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     mouse_callbacks={
-                        "Button1": lazy.spawn(terminal),
-                        "Button2": lazy.spawn(terminal + " -e tmux"),
-                        "Button3": lazy.spawn("xterm"),
+                        'Button1': lazy.spawn(terminal),
+                        'Button2': lazy.spawn(terminal + ' -e tmux'),
+                        'Button3': lazy.spawn('xterm'),
                     }
                 ),
-                set_icon(" ", group_colors[1]),
+                set_icon(' ', group_colors[1]),
                 # End Group one
 
 
@@ -394,9 +411,9 @@ screens = [
                 widget.Clock(
                     foreground=theme['foreground'],
                     background=group_colors[2],
-                    format=" %d/%m/%Y %a  %I:%M %p", # nf-mdi-calendar_today nf-fa-clock_o
+                    format=' %d/%m/%Y %a  %I:%M %p', # nf-mdi-calendar_today nf-fa-clock_o
                 ),
-                #set_icon(volume_ico, group_colors[2]),
+                #set_icon(icons['volume'], group_colors[2]),
                 #widget.PulseVolume(
                 #    foreground=theme['foreground'],
                 #    background=group_colors[2],
@@ -410,21 +427,22 @@ screens = [
 
                 # Group three
                 left_triangle(group_colors[2], group_colors[3]),
-                widget.Systray(
-                    icon_size=icons['size'],
-                    background=group_colors[3],
-                ),
-                set_icon(" ", group_colors[3]),
+                
+                set_icon(' ', group_colors[3]),
 
-                set_icon(" ", group_colors[3]), # nf-fa-window_maximize
+                set_icon(' ', group_colors[3]), # nf-fa-window_maximize
                 widget.CurrentLayout(
                     foreground=theme['foreground'],
                     background=group_colors[3]
                 ),
+                set_icon(' ', group_colors[3]),
                 # End Group three
             ],
             bar_theme['size'],
             background=bar_theme['color'],
+            margin=bar_theme['margin'],
+            border_width=bar_theme['border_width'],
+            border_color=bar_theme['color'],
         ),
     ),
 ]
@@ -434,9 +452,9 @@ screens = [
 # FLOATING LAYOUT
 ##############################################################################
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag([mod], 'Button1', lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], 'Button2', lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -448,12 +466,12 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
     ],
     border_focus=float_window['focus'],
     border_normal=float_window['normal'],
@@ -461,7 +479,7 @@ floating_layout = layout.Floating(
     margin=float_window['margin'],
 )
 auto_fullscreen = True
-focus_on_window_activation = "smart"
+focus_on_window_activation = 'smart'
 reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing

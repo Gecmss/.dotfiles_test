@@ -23,7 +23,7 @@ fonts = {
 }
 
 bar_theme = {
-    'color': '#020203',
+    'color': '#00000000', #020203
     'size': 24,
 }
 
@@ -51,7 +51,7 @@ group_box = {
 
 window_name = {
     'text_color': '#020203', #BD93F9
-    'background': '#020203',
+    'background': '#00000000',
     'max_chars': 32,
 }
 
@@ -284,6 +284,7 @@ layouts = [
     layout.Tile(
         border_focus=theme['active'],
         border_normal=theme['background'],
+        border_on_single=False,
         add_on_top=False,
         border_width=2,
         margin=8,
@@ -291,6 +292,7 @@ layouts = [
     layout.RatioTile(
         border_focus=theme['active'],
         border_normal=theme['background'],
+        border_on_single=False,
         border_width=1,
         fancy=True,
         margin=16,
@@ -353,7 +355,11 @@ screens = [
                     max_chars=window_name['max_chars']
                 ),
 
-
+                widget.Systray(
+                    icon_size=icons['size'],
+                    background=bar_theme['color'],
+                ),
+                separator(bar_theme['color']),
 
                 # Group one
                 left_triangle(bar_theme['color'], group_colors[1]),
@@ -410,10 +416,7 @@ screens = [
 
                 # Group three
                 left_triangle(group_colors[2], group_colors[3]),
-                widget.Systray(
-                    icon_size=icons['size'],
-                    background=group_colors[3],
-                ),
+                
                 set_icon(" ", group_colors[3]),
 
                 set_icon(" ", group_colors[3]), # nf-fa-window_maximize
@@ -421,11 +424,14 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[3]
                 ),
+                set_icon(" ", group_colors[3]),
                 # End Group three
             ],
             bar_theme['size'],
             background=bar_theme['color'],
-            border_color="#00000000"
+            margin=4,
+            border_width=4,
+            border_color='#00000000',
         ),
     ),
 ]

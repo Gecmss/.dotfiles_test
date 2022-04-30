@@ -129,7 +129,9 @@ alias storm="cd ~/Documents/Stuff/Vim/Stormlight"
 alias neo="clear && neofetch"
 alias co.="code ."
 alias open="xdg-open"
-alias trash="cd ~/.local/share/Trash/files"
+alias trashfolder="cd ~/.local/share/Trash/files"
+alias trash="rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*"
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
