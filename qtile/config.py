@@ -53,7 +53,7 @@ group_box = {
 
 window_name = {
     'text_color': '#020203', #BD93F9
-    'background': '#00000000',
+    'background': '#00000000', #090300
     'max_chars': 32,
 }
 
