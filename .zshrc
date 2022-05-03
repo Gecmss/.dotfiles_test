@@ -89,10 +89,13 @@ plugins=(
 	themes
 	asdf
 	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
+
+unsetopt autopushd
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -103,6 +106,8 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 export EDITOR='nvim'
+export TERM=alacritty
+export TERMINAL=alacritty
 # else
 #   export EDITOR='mvim'
 # fi
@@ -131,6 +136,10 @@ alias co.="code ."
 alias open="xdg-open"
 alias trashfolder="cd ~/.local/share/Trash/files"
 alias trash="rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*"
+alias arch="alacritty -e htop & alacritty -e ranger & clear"
+alias pose="arch && neo"
+alias pystu-act="cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate"
+
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

@@ -21,4 +21,4 @@ volumeicon &
 nitrogen --restore &
 
 #Picom
-picom &
+picom --vsync --backend glx --xrender-sync-fence &

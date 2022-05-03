@@ -133,6 +133,7 @@ let g:startify_bookmarks = [
             \ { 'c': '~/.config/qtile/config.py' },
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'p': '~/.config/qutebrowser/config.py' },
+            \ { 'z': '~/.zshrc'},
             \ ]
 
 " Close NERDTRee before saving session
@@ -314,9 +315,6 @@ cmap w!! w !sudo /usr/bin/tee >/dev/null "%"
 inoremap { {}<Esc>ha
 inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-inoremap ` ``<Esc>ha
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open a terminal in nvim

@@ -25,8 +25,8 @@ fonts = {
 bar_theme = {
     'color': '#00000000', #020203
     'size': 24,
-    'margin': 4,
-    'border_width': 4,
+    'margin': 6,
+    'border_width': 0,
 }
 
 theme = {
@@ -66,7 +66,7 @@ group_colors = {
 
 float_window = {
     'focus': '#82930F',
-    'normal': '#6840BB',
+    'normal': '#006840BB',
     'border_width': 2,
     'margin': 6
 }
@@ -192,7 +192,10 @@ keys = [
     Key([mod], 't', lazy.spawn('telegram-desktop'), desc='Launch Telegram'),
 
     # Spotify    
-    Key([mod], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
+    Key([mod, 'control'], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
+
+    # Spotify    
+    Key([mod], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
 
     # Code    
     Key([mod], 'c', lazy.spawn('code'), desc='Launch Code'),
@@ -222,7 +225,7 @@ keys = [
 # 4. nf-fa-code 
 # 5. nf-fa-folder_open 
 # 6. nf-dev-vim 
-# 7. nf-fae-python 
+# 7. nf-fae-python    nf-fa-steam_square 
 # 8. nf-fae-telegram 
 # 9. nf-fa-spotify 
 # 10. nf-fa-dropbox 
@@ -234,7 +237,7 @@ groups = [
     Group("  "),
     Group("  "),
     Group("  "),
-    Group("  "),
+    Group("  "),
     Group("  "),
     Group("  "),
     Group("  "),
@@ -284,11 +287,14 @@ layouts = [
         insert_position=1,
     ),
     layout.Max(),
-    layout.MonadTall(
+    layout.Columns(
+        border_focus_stack=["#d75f5f", "#8f3d3d"],
+        border_width=0,
+        margin=0,
+        margin_on_single=0,
         border_focus=theme['active'],
         border_normal=theme['background'],
-        min_secondary_size=300,
-        border_width=0,
+        insert_position=1,
     ),
     layout.Tile(
         border_focus=theme['active'],
