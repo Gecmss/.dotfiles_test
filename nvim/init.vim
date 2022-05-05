@@ -133,6 +133,7 @@ let g:startify_bookmarks = [
             \ { 'c': '~/.config/qtile/config.py' },
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'p': '~/.config/qutebrowser/config.py' },
+            \ { 'r': '~/.config/ranger/rc.conf'},
             \ { 'z': '~/.zshrc'},
             \ ]
 
@@ -323,7 +324,7 @@ map <Leader>vt :vsplit term://zsh<CR>
 map <Leader>ht :split term://zsh<CR>
 
 nnoremap <F9> :10sp term://zsh<CR>
-nnoremap <S-F9> :vsplit term://zsh<CR>
+nnoremap <s-F9> :vsplit term://zsh<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions and custom maps

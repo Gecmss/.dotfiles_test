@@ -119,12 +119,13 @@ def right_triangle(ng_color, pg_color):
         padding=-0.0,
     )
 
-def set_icon(icon, group_color):
+def set_icon(icon, group_color, mouse_callbacks={}):
     return widget.TextBox(
         text=icon,
         fontsize=icons['size'],
         foreground=theme['foreground'],
         background=group_color,
+        mouse_callbacks=mouse_callbacks,
     )
 
 
@@ -387,12 +388,15 @@ screens = [
                     threshold=50,
                     fmt= '{}'
                 ),
-                set_icon(icons['ram'], group_colors[1]),
+                set_icon(icons['ram'],
+                         group_colors[1],
+                         mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
+                         ),
                 widget.Memory(
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     fmt = '{}',
-                    measure_mem = "G",
+                    measure_mem = 'M', #'G',
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
                 ),
@@ -417,7 +421,7 @@ screens = [
                 widget.Clock(
                     foreground=theme['foreground'],
                     background=group_colors[2],
-                    format=' %d/%m/%Y %a  %I:%M %p', # nf-mdi-calendar_today nf-fa-clock_o
+                    format=' %d/%m/%Y %a  %H:%M %p', # nf-mdi-calendar_today nf-fa-clock_o  ... %H is for 24 format %I is 12 hour format 
                 ),
                 #set_icon(icons['volume'], group_colors[2]),
                 #widget.PulseVolume(
