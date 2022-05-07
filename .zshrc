@@ -125,20 +125,21 @@ export TERMINAL=alacritty
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-alias vim="nvim"
-alias c="clear"
-alias qtc="cd ~/.config/qtile"
-alias cqt="code ~/.config/qtile"
-alias alc="cd ~/.config/alacritty"
-alias storm="cd ~/Documents/Stuff/Vim/Stormlight"
-alias neo="clear && neofetch"
-alias co.="code ."
-alias open="xdg-open"
-alias trashfolder="cd ~/.local/share/Trash/files"
-alias trash="rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*"
-alias arch="alacritty -e htop & alacritty -e ranger & clear"
-alias pose="arch && neo"
-alias pystu-act="cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate"
+alias vim='nvim'
+alias c='clear'
+alias qtc='cd ~/.config/qtile'
+alias cqt='code ~/.config/qtile'
+alias alc='cd ~/.config/alacritty'
+alias storm='cd ~/Documents/Stuff/Vim/Stormlight'
+alias neo='clear && neofetch'
+alias co.='code .'
+alias open='xdg-open'
+alias trashfolder='cd ~/.local/share/Trash/files'
+alias trash='rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*'
+alias arch='alacritty -e htop & alacritty -e ranger & clear'
+alias pose='arch && neo'
+alias pystu-act='cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate'
+alias token='bat ~/Documents/.token'
 
 
 
