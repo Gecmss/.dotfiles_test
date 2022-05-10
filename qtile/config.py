@@ -413,7 +413,7 @@ screens = [
                 ),
                 set_icon(' ', group_colors[1]),
                 # End Group one
-
+                
 
 
                 # Group two

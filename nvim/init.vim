@@ -1,4 +1,5 @@
-" init.vim - Justine Smithies
+" init.vim - Gerardo Castillo
+" I steal it to Justine Smithies haha
 
 " vim-plug autoconfig if not already installed
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -132,7 +133,6 @@ let g:startify_bookmarks = [
             \ { 'b': '~/.bashrc' },
             \ { 'c': '~/.config/qtile/config.py' },
             \ { 'i': '~/.config/nvim/init.vim' },
-            \ { 'p': '~/.config/qutebrowser/config.py' },
             \ { 'r': '~/.config/ranger/rc.conf'},
             \ { 'z': '~/.zshrc'},
             \ ]
@@ -203,11 +203,12 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 let g:coc_node_args = ['--max-old-space-size=8192']
 let g:coc_global_extensions = [
     \ 'coc-css',
+    \ 'coc-clangd',
     \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-phpls',
-    \ 'coc-sh',
+    \ 'coc-markdown-preview-enhanced',
     \ 'coc-pyright',
+    \ 'coc-sh',
     \]
 
 " Use tab for trigger completion with characters ahead and navigate.

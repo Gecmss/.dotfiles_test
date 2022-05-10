@@ -10,3 +10,6 @@ ranger/plugins
 
 # Qtile
 qtile/__pycache__
+
+# Openbox
+openbox
