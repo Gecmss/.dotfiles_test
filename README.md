@@ -42,8 +42,8 @@ xterm
 code
 
 ## Extra necessary things (look for it in github)
-powerline-fonts 
-oh-my-zsh or oh-my-bash
+-powerline-fonts 
+-oh-my-zsh or oh-my-bash
 
 
 
