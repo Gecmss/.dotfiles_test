@@ -7,7 +7,7 @@ Sorry if you watch this disaster.
 
 you can install dependencies running:
 
-sudo pacman -S <dependencies> 
+sudo pacman -S dependencies    
 
 picom
 alacritty
@@ -46,14 +46,14 @@ code
 - oh-my-zsh or oh-my-bash
 
 ## Recomendations
-###sound 
+### Sound 
 If you have problems with the audio then you can put the next in your /etc/asound.conf  
 
 ```
-defaults.ctl.card <PCH>
-defaults.pcm.card <PCH>
+defaults.ctl.card PCH
+defaults.pcm.card PCH
 ```
-Where <PCH> is your pch sound card, you can find that out with the command  
+Where PCH is your pch sound card, you can find that out with the command  
 
 ```
 cat /proc/asound/cards
