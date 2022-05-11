@@ -79,7 +79,7 @@ set smartcase                                       " Do not ignore case if the 
 set incsearch                                       " Incremental search
 set splitbelow                                      " Split below current window
 set splitright                                      " Split window to the right
-set mouse=a                                         " Let to use the mouse
+" set mouse=a                                         " Let to use the mouse
 
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')
@@ -318,6 +318,7 @@ inoremap { {}<Esc>ha
 inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open a terminal in nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -358,5 +359,10 @@ function! s:swap_down()
     exec n + 1
 endfunction
 
+function! s:relative_number()
+    set relativenumber!
+endfunction
+
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
+noremap <F12> :set rnu!<CR>
