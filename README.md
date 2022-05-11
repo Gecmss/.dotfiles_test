@@ -47,19 +47,43 @@ code
 
 ## Recomendations
 ###sound 
-if you have problems with the audio then you can put the next in your /etc/asound.conf
+If you have problems with the audio then you can put the next in your /etc/asound.conf  
 
 ```
 defaults.ctl.card <PCH>
 defaults.pcm.card <PCH>
-
 ```
-Where <PCH> is your pch sound card, you can find that out with the command
+Where <PCH> is your pch sound card, you can find that out with the command  
 
 ```
 cat /proc/asound/cards
 ```
 
+### Spanish Accents
 
+If you have problems using spanish accents with some applications you can do the next  
+
+first: uncomment Ur language in locale.gen  
+for example, I uncommented es_CO.UTF8 UTF8 line  
+
+  
+  
+
+second:   
+run the next
+
+```
+locale-gen
+```
+
+third:  
+write in your /etc/locale.conf your language, for example, in my case is: 'LANG=es_CO.UTF-8'  
+
+and finally:  
+run the next line
+
+```
+localectl set-x11-keymap --no-convert latam pc105 deadtilde
+```
 
 
