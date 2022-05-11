@@ -209,6 +209,9 @@ keys = [
 
     # Nvim    
     Key([mod], 'v', lazy.spawn(terminal + ' -e nvim'), desc='Launch Nvim'),
+    
+    # NeoVide
+    Key([mod, 'control'], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
 
     # QuteBrowser    
     Key([mod], 'q', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),

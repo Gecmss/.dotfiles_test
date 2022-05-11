@@ -79,7 +79,7 @@ set smartcase                                       " Do not ignore case if the 
 set incsearch                                       " Incremental search
 set splitbelow                                      " Split below current window
 set splitright                                      " Split window to the right
-" set mouse=a                                         " Let to use the mouse
+set mouse=a                                         " Let to use the mouse
 
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')

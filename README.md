@@ -45,6 +45,20 @@ code
 - powerline-fonts 
 - oh-my-zsh or oh-my-bash
 
+## Recomendations
+###sound 
+if you have problems with the audio then you can put the next in your /etc/asound.conf
+
+```
+defaults.ctl.card <PCH>
+defaults.pcm.card <PCH>
+
+```
+Where <PCH> is your pch sound card, you can find that out with the command
+
+```
+cat /proc/asound/cards
+```
 
 
 
