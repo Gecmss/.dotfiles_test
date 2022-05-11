@@ -80,9 +80,10 @@ third:
 write in your /etc/locale.conf your language, for example, in my case is: 'LANG=es_CO.UTF-8'  
 
 and finally:  
-run the next line
+run the next lines
 
 ```
+localectl set-keymap --no-convert la-latin1
 localectl set-x11-keymap --no-convert latam pc105 deadtilde
 ```
 
