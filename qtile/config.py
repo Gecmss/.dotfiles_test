@@ -181,22 +181,22 @@ keys = [
 
     # Rofi menu
     Key([mod], 'm', lazy.spawn('rofi -show drun'), desc='Launch Rofi menu'),
-    Key([mod, 'shift'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
+    Key(['mod1'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
     
     # Firefox
     Key([mod], 'b', lazy.spawn('firefox'), desc='Launch firefox'),
     
     # Ranger
-    Key([mod], 'f', lazy.spawn(terminal + ' -e ranger'), desc='Launch Ranger file explorer'),
+    Key([mod], 'f', lazy.spawn(terminal + ' --title Ranger -e ranger'), desc='Launch Ranger file explorer'),
 
     # Telegram 
     Key([mod], 't', lazy.spawn('telegram-desktop'), desc='Launch Telegram'),
 
     # Spotify    
-    Key([mod, 'control'], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
+    Key([mod], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
 
-    # Spotify    
-    Key([mod], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
+    # Steam    
+    Key([mod, 'control'], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
 
     # Code    
     Key([mod], 'c', lazy.spawn('code'), desc='Launch Code'),
@@ -208,7 +208,7 @@ keys = [
     Key([mod, 'control'], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
     # Nvim    
-    Key([mod], 'v', lazy.spawn(terminal + ' -e nvim'), desc='Launch Nvim'),
+    Key([mod], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
     
     # NeoVide
     Key([mod, 'control'], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
@@ -235,16 +235,16 @@ keys = [
 # 10. nf-fa-dropbox 
 
 groups = [
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  ', matches=[Match(wm_class='spotify')]),
+    Group('  '),
 ]
 
 for i, group in enumerate(groups):
@@ -393,7 +393,7 @@ screens = [
                 ),
                 set_icon(icons['ram'],
                          group_colors[1],
-                         mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
+                         mouse_callbacks = {'Button1': lazy.spawn(terminal + ' --title System -e htop')},
                          ),
                 widget.Memory(
                     foreground=theme['foreground'],
@@ -401,7 +401,7 @@ screens = [
                     fmt = '{}',
                     measure_mem = 'M', #'G',
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
-                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
+                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' --title System -e htop')},
                 ),
                 widget.TextBox(
                     text='  ', # nf-oct-terminal
@@ -511,3 +511,8 @@ wmname = "LG3D"
 def autostart():
     home = os.path.expanduser('~')
     subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+
+@hook.subscribe.client_new
+def client_new(client):
+    if client.name == 'Spotify':
+        client.togroup(9)#('  ')

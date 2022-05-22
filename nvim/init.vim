@@ -57,7 +57,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
 
 " winresizer Plugin
-Plug 'simeji/winresizer'
+" Plug 'simeji/winresizer'
 
 " FZF Plugins
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -80,6 +80,8 @@ set incsearch                                       " Incremental search
 set splitbelow                                      " Split below current window
 set splitright                                      " Split window to the right
 " set mouse=a                                         " Let to use the mouse
+let mapleader=','                                   " Set a leader letter
+
 
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')
@@ -206,7 +208,6 @@ let g:coc_global_extensions = [
     \ 'coc-clangd',
     \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-markdown-preview-enhanced',
     \ 'coc-pyright',
     \ 'coc-sh',
     \]
@@ -319,14 +320,19 @@ inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
 
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementations)
+nmap <silent> gr <Plug>(coc-references)
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open a terminal in nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>vt :vsplit term://zsh<CR>
-map <Leader>ht :split term://zsh<CR>
+map <Leader>ht :10sp term://zsh<CR>
 
 nnoremap <F9> :10sp term://zsh<CR>
-nnoremap <s-F9> :vsplit term://zsh<CR>
+nnoremap <S-F9> :vsplit term://zsh<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions and custom maps
@@ -365,4 +371,4 @@ endfunction
 
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
-noremap <F12> :set rnu!<CR>
+noremap <silent> <F4> :set rnu!<CR>

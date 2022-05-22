@@ -138,7 +138,7 @@ alias trashfolder='cd ~/.local/share/Trash/files'
 alias trash='rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*'
 alias arch='alacritty -e htop & alacritty -e ranger & clear'
 alias pose='arch && neo'
-alias pystu-act='cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate'
+alias pysact='cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate'
 alias token='bat ~/Documents/.token'
 
 
