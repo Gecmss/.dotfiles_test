@@ -1,7 +1,7 @@
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -12,9 +12,9 @@ terminal = 'alacritty'
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
 
-##############################################################################
+#################################################################
 # CUSTOM COLORS, ICONS AND THEMES
-##############################################################################
+#################################################################
 
 fonts = {
     'default': 'Ubuntu Mono Nerd Font',
@@ -87,9 +87,9 @@ layout_theme = {
     'inactive': '#996840BB',
 }
 
-##############################################################################
+#################################################################
 # CUSTOM FUNCTIONS
-##############################################################################
+#################################################################
 
 def separator(color):
     return widget.Sep(
@@ -129,9 +129,9 @@ def set_icon(icon, group_color, mouse_callbacks={}):
     )
 
 
-##############################################################################
+#################################################################
 # KEYBINDINGS
-##############################################################################
+#################################################################
 
 keys = [
     # Focus
@@ -139,9 +139,10 @@ keys = [
     Key([mod], 'l', lazy.layout.right(), desc='Move focus to right'),
     Key([mod], 'j', lazy.layout.down(), desc='Move focus down'),
     Key([mod], 'k', lazy.layout.up(), desc='Move focus up'),
+
     Key([mod], 'space', lazy.layout.next(), desc='Move window focus to other window'),
-  
     # Move
+
     Key([mod, 'shift'], 'h', lazy.layout.shuffle_left(), desc='Move window to the left'),
     Key([mod, 'shift'], 'l', lazy.layout.shuffle_right(), desc='Move window to the right'),
     Key([mod, 'shift'], 'j', lazy.layout.shuffle_down(), desc='Move window down'),
@@ -164,6 +165,8 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], 'Tab', lazy.next_layout(), desc='Toggle between layouts'),
+    Key([mod, 'control'], 'Tab', lazy.prev_layout(), desc='Toggle between layouts'),
+    Key(['mod1'], 'f', lazy.window.toggle_floating(), desc='Toggle between layouts'),
 
     Key([mod], 'w', lazy.window.kill(), desc='Kill focused window'),
     Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
@@ -176,6 +179,10 @@ keys = [
     Key([mod], 'p', lazy.spawn("scrot -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot'),
     Key([mod, 'shift'], 'p', lazy.spawn("scrot -s -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot -select'),
     Key([mod, 'control'], 'p', lazy.spawn('gnome-screenshot -i'), desc='Gnome Screenshot'),
+
+    #Power Menu
+    # Key([mod], 'z', lazy.spawn("python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py"), desc='Lauch Power Menu'),
+    
 
     # Keys to lauch apps
 
@@ -192,6 +199,9 @@ keys = [
     # Telegram 
     Key([mod], 't', lazy.spawn('telegram-desktop'), desc='Launch Telegram'),
 
+    # Email
+    Key([mod], 'e', lazy.spawn('thunderbird'), desc='Launch Thunderbird'),
+
     # Spotify    
     Key([mod], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
 
@@ -207,20 +217,20 @@ keys = [
     # Notion
     Key([mod, 'control'], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
-    # Nvim    
-    Key([mod], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
-    
     # NeoVide
-    Key([mod, 'control'], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
+    Key([mod], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
+    
+    # Nvim    
+    Key([mod, 'control'], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
 
     # QuteBrowser    
     Key([mod], 'q', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),
 ]
 
 
-##############################################################################
+#################################################################
 # GROUPS
-##############################################################################
+#################################################################
 
 # Nerd font list 
 # 1. nf-linux-archlinux 
@@ -274,11 +284,47 @@ for i, group in enumerate(groups):
         ]
     )
 
+#################################################################
+# DropDowns
+#################################################################
 
+groups.extend([
+    ScratchPad('scratch',
+               [
+                   DropDown(
+                       'term',
+                       'alacritty',
+                       opacity=1,
+                       height=0.5,
+                       width=0.5,
+                       x=0.25,
+                       y=0,
 
-##############################################################################
+                   ),
+                   DropDown(
+                       'spot',
+                       'spotify',
+                       opacity=1,
+                       height=0.75,
+                       width=0.5,
+                       x=0.25,
+                       y=0,
+
+                   ),
+               ]
+    )
+])
+
+keys.extend(
+    [
+        Key([], 'F2', lazy.group['scratch'].dropdown_toggle('term')),
+        Key([], 'F10', lazy.group['scratch'].dropdown_toggle('spot')),
+    ]
+)
+
+#################################################################
 # LAYOUTS
-##############################################################################
+#################################################################
 
 layouts = [
     layout.Columns(
@@ -330,9 +376,9 @@ layouts = [
     ),
 ]
 
-##############################################################################
+#################################################################
 # SCREENS
-##############################################################################
+#################################################################
 
 widget_defaults = dict(
     font=fonts['default'],
@@ -393,7 +439,10 @@ screens = [
                 ),
                 set_icon(icons['ram'],
                          group_colors[1],
-                         mouse_callbacks = {'Button1': lazy.spawn(terminal + ' --title System -e htop')},
+                         mouse_callbacks = {
+                             'Button1': lazy.spawn(terminal + ' --title System -e htop'),
+                             'Button3': lazy.spawn(terminal + ' --title System -e btop')
+                         },
                          ),
                 widget.Memory(
                     foreground=theme['foreground'],
@@ -401,7 +450,10 @@ screens = [
                     fmt = '{}',
                     measure_mem = 'M', #'G',
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
-                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' --title System -e htop')},
+                    mouse_callbacks = {
+                        'Button1': lazy.spawn(terminal + ' --title System -e htop'),
+                        'Button3': lazy.spawn(terminal + ' --title System -e btop')
+                },
                 ),
                 widget.TextBox(
                     text='  ', # nf-oct-terminal
@@ -425,6 +477,9 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[2],
                     format=' %d/%m/%Y %a  %H:%M %p', # nf-mdi-calendar_today nf-fa-clock_o  ... %H is for 24 format %I is 12 hour format 
+                    mouse_callbacks={
+                        'Button1': lazy.spawn(terminal + ' --title Calendar -e khal interactive'),
+                    },
                 ),
                 #set_icon(icons['volume'], group_colors[2]),
                 #widget.PulseVolume(
@@ -453,7 +508,7 @@ screens = [
             ],
             bar_theme['size'],
             background=bar_theme['color'],
-            margin=bar_theme['margin'],
+            #margin=bar_theme['margin'],
             border_width=bar_theme['border_width'],
             border_color=bar_theme['color'],
         ),
@@ -461,9 +516,10 @@ screens = [
 ]
 
 
-##############################################################################
+#################################################################
 # FLOATING LAYOUT
-##############################################################################
+#################################################################
+
 mouse = [
     Drag([mod], 'Button1', lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()),
@@ -504,9 +560,10 @@ wl_input_rules = None
 
 wmname = "LG3D"
 
-##############################################################################
+#################################################################
 # HOOKS
-##############################################################################
+#################################################################
+
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')

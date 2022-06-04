@@ -57,7 +57,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
 
 " winresizer Plugin
-Plug 'simeji/winresizer'
+" Plug 'simeji/winresizer'
 
 " FZF Plugins
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -80,7 +80,7 @@ set incsearch                                       " Incremental search
 set splitbelow                                      " Split below current window
 set splitright                                      " Split window to the right
 " set mouse=a                                         " Let to use the mouse
-let mapleader='-'                                   " Set a leader letter
+let mapleader=','                                   " Set a leader letter
 
 
 " guard for distributions lacking the persistent_undo feature.

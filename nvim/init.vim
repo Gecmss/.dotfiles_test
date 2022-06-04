@@ -1,5 +1,4 @@
 " init.vim - Gerardo Castillo
-" I steal it to Justine Smithies haha
 
 " vim-plug autoconfig if not already installed
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -80,7 +79,7 @@ set incsearch                                       " Incremental search
 set splitbelow                                      " Split below current window
 set splitright                                      " Split window to the right
 " set mouse=a                                         " Let to use the mouse
-let mapleader=','                                   " Set a leader letter
+let mapleader='-'                                   " Set a leader letter
 
 
 " guard for distributions lacking the persistent_undo feature.
@@ -204,13 +203,13 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " CoC extensions to be auto installed
 let g:coc_node_args = ['--max-old-space-size=8192']
 let g:coc_global_extensions = [
-    \ 'coc-css',
     \ 'coc-clangd',
-    \ 'coc-html',
-    \ 'coc-json',
     \ 'coc-pyright',
     \ 'coc-sh',
     \]
+    " \ 'coc-json',
+    " \ 'coc-html',
+    " \ 'coc-css',
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -327,12 +326,24 @@ nmap <silent> gr <Plug>(coc-references)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open a terminal in nvim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>vt :vsplit term://zsh<CR>
 map <Leader>ht :10sp term://zsh<CR>
 
+map <Leader>vs :vsplit<CR>
+map <Leader>hs :sp<CR>
+
+map <leader>nh :nohl<CR>
+
 nnoremap <F9> :10sp term://zsh<CR>
 nnoremap <S-F9> :vsplit term://zsh<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neovide
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:neovide_cursor_vfx_mode = "pixiedust"
+let g:neovide_transparency = 0.9
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions and custom maps
@@ -372,3 +383,4 @@ endfunction
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
 noremap <silent> <F4> :set rnu!<CR>
+noremap <silent> <F3> :FZF <CR>

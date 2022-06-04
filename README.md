@@ -29,6 +29,8 @@ npm
 noto-fonts
 alsa-utils
 pulseaudio-alsa
+ctags
+fzf
 
 
 ### Applications of shortcuts
@@ -36,6 +38,7 @@ firefox
 ranger
 spotify
 notion-app-enhanced
+neovide
 neovim
 telegram-desktop
 xterm
@@ -86,5 +89,6 @@ run the next lines
 localectl set-keymap --no-convert la-latin1
 localectl set-x11-keymap --no-convert latam pc105 deadtilde
 ```
+
 
 

@@ -140,7 +140,9 @@ alias arch='alacritty -e htop & alacritty -e ranger & clear'
 alias pose='arch && neo'
 alias pysact='cd ~/Documents/Python/Stuff && source ./Stuff/bin/activate'
 alias token='bat ~/Documents/.token'
-
+alias :q='exit'
+alias cats='cat $(fzf)'
+alias pwmenu='python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
