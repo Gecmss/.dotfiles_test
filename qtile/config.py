@@ -448,7 +448,7 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     fmt = '{}',
-                    measure_mem = 'M', #'G',
+                    measure_mem = 'G', #'G', 'M'
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     mouse_callbacks = {
                         'Button1': lazy.spawn(terminal + ' --title System -e htop'),
@@ -473,6 +473,20 @@ screens = [
 
                 # Group two
                 left_triangle(group_colors[1], group_colors[2]),
+                set_icon(" ", group_colors[2]),
+                widget.Pomodoro(
+                    background=group_colors[2],
+                    color_inactive=theme['foreground'],
+                    color_break=group_box['this_current_screen_border'],
+                    color_active=theme['active'],
+                    fontsize=theme['icon_size'],
+                    prefix_inactive=' ',
+                    prefix_active=' ',
+                    prefix_paused=' P',
+                    prefix_break=' ',
+                    prefix_long_break=' ',
+                ),
+                set_icon(" ", group_colors[2]),
                 widget.Clock(
                     foreground=theme['foreground'],
                     background=group_colors[2],
@@ -488,7 +502,7 @@ screens = [
                 #    limit_max_volume=True,
                 #    fontsize=fonts['size'],
                 #),
-                #set_icon(" ", group_colors[2]),
+                set_icon(" ", group_colors[2]),
                 # End Group two
 
 

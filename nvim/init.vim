@@ -133,6 +133,7 @@ let g:startify_bookmarks = [
             \ { 'a': '~/.config/qtile/autostart.sh' },
             \ { 'b': '~/.bashrc' },
             \ { 'c': '~/.config/qtile/config.py' },
+            \ { 'd': '~/.config/qutebrowser'},
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'r': '~/.config/ranger/rc.conf'},
             \ { 'z': '~/.zshrc'},

@@ -1,0 +1,2 @@
+:s/<regex>/<otherthing>/ can change a word in a line for other
+:%s/<regex>/<otherthing>/ can change a word for the whole file
