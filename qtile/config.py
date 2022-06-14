@@ -180,6 +180,11 @@ keys = [
     Key([mod, 'shift'], 'p', lazy.spawn("scrot -s -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot -select'),
     Key([mod, 'control'], 'p', lazy.spawn('gnome-screenshot -i'), desc='Gnome Screenshot'),
 
+    # Spotify Control
+    Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause'), desc='Play or Pause Player'),
+    Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Skip to next'),
+    Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Skip to previous'),
+
     #Power Menu
     # Key([mod], 'z', lazy.spawn("python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py"), desc='Lauch Power Menu'),
     

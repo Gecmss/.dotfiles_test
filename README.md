@@ -29,6 +29,7 @@ npm
 noto-fonts
 alsa-utils
 pulseaudio-alsa
+playerctl
 ctags
 fzf
 
