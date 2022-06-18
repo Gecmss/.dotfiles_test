@@ -147,3 +147,5 @@ alias pwmenu='python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+alias luamake=/home/gerardc/lua-language-server/3rd/luamake/luamake

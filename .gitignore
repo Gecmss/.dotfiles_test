@@ -2,6 +2,7 @@
 # Nvim
 nvim/autoload
 nvim/plugged
+nvim/plugin/packer_compiled.lua
 nvim/session
 nvim/undodir
 
