@@ -1,7 +1,7 @@
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -12,38 +12,40 @@ terminal = 'alacritty'
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
 
-##############################################################################
+#################################################################
 # CUSTOM COLORS, ICONS AND THEMES
-##############################################################################
+#################################################################
 
 fonts = {
     'default': 'Ubuntu Mono Nerd Font',
-    'powerline': 'Source Code Pro for Powerline',
+    'powerline': 'Source Code Pro',
     'size': 16
 }
 
 bar_theme = {
     'color': '#00000000', #020203
     'size': 24,
+    'margin': 6,
+    'border_width': 0,
 }
 
 theme = {
     'foreground': '#000000',
     'background': '#0A0E14',
-    'active': '#F1FA8C',
-    'inactive': '#6272A4',
+    'active': '#FEE05C',
+    'inactive': '#6840BB',
     'icon_size': 18,
 }
 
 group_box = {
     'foreground': '#000000',
-    'background': '#0A0E14',
-    'grab': True,
+    'background': '#000000',
+    'disable_grab': True,
     'highlight': 'text',
     'urgent': 'text',
     'urgent_color': '#FF5555',
     'this_current_screen_border': '#E1AD01',
-    'this_screen_border': '#BD93F9',
+    'this_screen_border': '#82930F',
     'other_current_screen_border': '#44435A',
     'other_screen_border': '#44435A',
     'border_width': 1,
@@ -51,20 +53,20 @@ group_box = {
 
 window_name = {
     'text_color': '#020203', #BD93F9
-    'background': '#00000000',
+    'background': '#00000000', #090300
     'max_chars': 32,
 }
 
 group_colors = {
-    1: '#BD93F9',
-    2: '#6272A4',
-    3: '#E1AD01',
-    4: '#F1FA8C',
+    1: '#7D78DE', #7D78DE
+    2: '#6840BB',
+    3: '#82930F', #82930F
+    4: '#FEE05C',
 }
 
 float_window = {
-    'focus': '#E1AD01',
-    'normal': '#0A0E14',
+    'focus': '#82930F',
+    'normal': '#006840BB',
     'border_width': 2,
     'margin': 6
 }
@@ -78,9 +80,16 @@ icons = {
     'volume': ' ',
 }
 
-##############################################################################
+layout_theme = {
+    'foreground': '#000000',
+    'background': '#990A0E14',
+    'active': '#99FEE05C',
+    'inactive': '#996840BB',
+}
+
+#################################################################
 # CUSTOM FUNCTIONS
-##############################################################################
+#################################################################
 
 def separator(color):
     return widget.Sep(
@@ -107,21 +116,22 @@ def right_triangle(ng_color, pg_color):
         font=fonts['powerline'],
         foreground=pg_color,
         background=ng_color,
-        padding=-0.1,
+        padding=-0.0,
     )
 
-def set_icon(icon, group_color):
+def set_icon(icon, group_color, mouse_callbacks={}):
     return widget.TextBox(
         text=icon,
         fontsize=icons['size'],
         foreground=theme['foreground'],
         background=group_color,
+        mouse_callbacks=mouse_callbacks,
     )
 
 
-##############################################################################
+#################################################################
 # KEYBINDINGS
-##############################################################################
+#################################################################
 
 keys = [
     # Focus
@@ -129,9 +139,10 @@ keys = [
     Key([mod], 'l', lazy.layout.right(), desc='Move focus to right'),
     Key([mod], 'j', lazy.layout.down(), desc='Move focus down'),
     Key([mod], 'k', lazy.layout.up(), desc='Move focus up'),
+
     Key([mod], 'space', lazy.layout.next(), desc='Move window focus to other window'),
-  
     # Move
+
     Key([mod, 'shift'], 'h', lazy.layout.shuffle_left(), desc='Move window to the left'),
     Key([mod, 'shift'], 'l', lazy.layout.shuffle_right(), desc='Move window to the right'),
     Key([mod, 'shift'], 'j', lazy.layout.shuffle_down(), desc='Move window down'),
@@ -154,6 +165,8 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], 'Tab', lazy.next_layout(), desc='Toggle between layouts'),
+    Key([mod, 'control'], 'Tab', lazy.prev_layout(), desc='Toggle between layouts'),
+    Key(['mod1'], 'f', lazy.window.toggle_floating(), desc='Toggle between layouts'),
 
     Key([mod], 'w', lazy.window.kill(), desc='Kill focused window'),
     Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
@@ -167,23 +180,38 @@ keys = [
     Key([mod, 'shift'], 'p', lazy.spawn("scrot -s -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot -select'),
     Key([mod, 'control'], 'p', lazy.spawn('gnome-screenshot -i'), desc='Gnome Screenshot'),
 
+    # Spotify Control
+    Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause'), desc='Play or Pause Player'),
+    Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Skip to next'),
+    Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Skip to previous'),
+
+    #Power Menu
+    # Key([mod], 'z', lazy.spawn("python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py"), desc='Lauch Power Menu'),
+    
+
     # Keys to lauch apps
 
     # Rofi menu
     Key([mod], 'm', lazy.spawn('rofi -show drun'), desc='Launch Rofi menu'),
-    Key([mod, 'shift'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
+    Key(['mod1'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
     
     # Firefox
     Key([mod], 'b', lazy.spawn('firefox'), desc='Launch firefox'),
     
     # Ranger
-    Key([mod], 'f', lazy.spawn(terminal + ' -e ranger'), desc='Launch Ranger file explorer'),
+    Key([mod], 'f', lazy.spawn(terminal + ' --title Ranger -e ranger'), desc='Launch Ranger file explorer'),
 
     # Telegram 
     Key([mod], 't', lazy.spawn('telegram-desktop'), desc='Launch Telegram'),
 
+    # Email
+    Key([mod], 'e', lazy.spawn('thunderbird'), desc='Launch Thunderbird'),
+
     # Spotify    
     Key([mod], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
+
+    # Steam    
+    Key([mod, 'control'], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
 
     # Code    
     Key([mod], 'c', lazy.spawn('code'), desc='Launch Code'),
@@ -194,17 +222,20 @@ keys = [
     # Notion
     Key([mod, 'control'], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
+    # NeoVide
+    Key([mod], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
+    
     # Nvim    
-    Key([mod], 'v', lazy.spawn(terminal + ' -e nvim'), desc='Launch Nvim'),
+    Key([mod, 'control'], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
 
     # QuteBrowser    
     Key([mod], 'q', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),
 ]
 
 
-##############################################################################
+#################################################################
 # GROUPS
-##############################################################################
+#################################################################
 
 # Nerd font list 
 # 1. nf-linux-archlinux 
@@ -213,22 +244,22 @@ keys = [
 # 4. nf-fa-code 
 # 5. nf-fa-folder_open 
 # 6. nf-dev-vim 
-# 7. nf-fae-python 
+# 7. nf-fae-python    nf-fa-steam_square 
 # 8. nf-fae-telegram 
 # 9. nf-fa-spotify 
 # 10. nf-fa-dropbox 
 
 groups = [
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
-    Group("  "),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  '),
+    Group('  ', matches=[Match(wm_class='spotify')]),
+    Group('  '),
 ]
 
 for i, group in enumerate(groups):
@@ -258,11 +289,47 @@ for i, group in enumerate(groups):
         ]
     )
 
+#################################################################
+# DropDowns
+#################################################################
 
+groups.extend([
+    ScratchPad('scratch',
+               [
+                   DropDown(
+                       'term',
+                       'alacritty',
+                       opacity=1,
+                       height=0.5,
+                       width=0.5,
+                       x=0.25,
+                       y=0,
 
-##############################################################################
+                   ),
+                   DropDown(
+                       'spot',
+                       'spotify',
+                       opacity=1,
+                       height=0.75,
+                       width=0.5,
+                       x=0.25,
+                       y=0,
+
+                   ),
+               ]
+    )
+])
+
+keys.extend(
+    [
+        Key([], 'F2', lazy.group['scratch'].dropdown_toggle('term')),
+        Key([], 'F10', lazy.group['scratch'].dropdown_toggle('spot')),
+    ]
+)
+
+#################################################################
 # LAYOUTS
-##############################################################################
+#################################################################
 
 layouts = [
     layout.Columns(
@@ -275,25 +342,28 @@ layouts = [
         insert_position=1,
     ),
     layout.Max(),
-    layout.MonadTall(
+    layout.Columns(
+        border_focus_stack=["#d75f5f", "#8f3d3d"],
+        border_width=0,
+        margin=0,
+        margin_on_single=0,
         border_focus=theme['active'],
         border_normal=theme['background'],
-        min_secondary_size=300,
-        border_width=0,
+        insert_position=1,
     ),
     layout.Tile(
         border_focus=theme['active'],
         border_normal=theme['background'],
         border_on_single=False,
         add_on_top=False,
-        border_width=2,
+        border_width=0,
         margin=8,
     ),
     layout.RatioTile(
         border_focus=theme['active'],
         border_normal=theme['background'],
         border_on_single=False,
-        border_width=1,
+        border_width=0,
         fancy=True,
         margin=16,
     ),
@@ -311,9 +381,9 @@ layouts = [
     ),
 ]
 
-##############################################################################
+#################################################################
 # SCREENS
-##############################################################################
+#################################################################
 
 widget_defaults = dict(
     font=fonts['default'],
@@ -324,19 +394,19 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.GroupBox(
                     active=theme['active'],
                     inactive=theme['inactive'],
                     borderwidth=group_box['border_width'],
-                    disable_drag=True,
+                    disable_drag=group_box['disable_grab'],
                     fontsize=theme['icon_size'],
                     foreground=group_box['foreground'],
                     background=group_box['background'],
                     highlight_method=group_box['highlight'],
                     margin_x=0,
-                    margin_y=5,
+                    margin_y=3,
                     padding_x=0,
                     padding_y=10,
                     this_current_screen_border=group_box['this_current_screen_border'],
@@ -348,7 +418,9 @@ screens = [
                 ),
                 right_triangle(bar_theme['color'], group_box['background']),
                 separator(bar_theme['color']),
-                widget.Prompt(),
+                widget.Prompt(
+                    foreground=theme['foreground']
+                ),
                 widget.WindowName(
                     foreground=window_name['text_color'],
                     background=window_name['background'],
@@ -370,80 +442,102 @@ screens = [
                     threshold=50,
                     fmt= '{}'
                 ),
-                set_icon(icons['ram'], group_colors[1]),
+                set_icon(icons['ram'],
+                         group_colors[1],
+                         mouse_callbacks = {
+                             'Button1': lazy.spawn(terminal + ' --title System -e htop'),
+                             'Button3': lazy.spawn(terminal + ' --title System -e btop')
+                         },
+                         ),
                 widget.Memory(
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     fmt = '{}',
-                    #measure_mem = "G",
+                    measure_mem = 'G', #'G', 'M'
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
-                    mouse_callbacks = {'Button1': lazy.spawn(terminal + ' -e htop')},
+                    mouse_callbacks = {
+                        'Button1': lazy.spawn(terminal + ' --title System -e htop'),
+                        'Button3': lazy.spawn(terminal + ' --title System -e btop')
+                },
                 ),
                 widget.TextBox(
-                    text="  ", # nf-oct-terminal
+                    text='  ', # nf-oct-terminal
                     fontsize=icons['size'],
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     mouse_callbacks={
-                        "Button1": lazy.spawn(terminal),
-                        "Button2": lazy.spawn(terminal + " -e tmux"),
-                        "Button3": lazy.spawn("xterm"),
+                        'Button1': lazy.spawn(terminal),
+                        'Button2': lazy.spawn(terminal + ' -e tmux'),
+                        'Button3': lazy.spawn('xterm'),
                     }
                 ),
-                set_icon(" ", group_colors[1]),
+                set_icon(' ', group_colors[1]),
                 # End Group one
-
-
 
                 # Group two
                 left_triangle(group_colors[1], group_colors[2]),
+                set_icon(" ", group_colors[2]),
+                widget.Pomodoro(
+                    background=group_colors[2],
+                    color_inactive=theme['foreground'],
+                    color_break=group_box['this_current_screen_border'],
+                    color_active=theme['active'],
+                    fontsize=theme['icon_size'],
+                    prefix_inactive=' ',
+                    prefix_active=' ',
+                    prefix_paused=' P',
+                    prefix_break=' ',
+                    prefix_long_break=' ',
+                ),
+                set_icon(" ", group_colors[2]),
                 widget.Clock(
                     foreground=theme['foreground'],
                     background=group_colors[2],
-                    format=" %d/%m/%Y %a  %I:%M %p", # nf-mdi-calendar_today nf-fa-clock_o
+                    format=' %d/%m/%Y %a  %H:%M %p', # nf-mdi-calendar_today nf-fa-clock_o  ... %H is for 24 format %I is 12 hour format 
+                    mouse_callbacks={
+                        'Button1': lazy.spawn(terminal + ' --title Calendar -e khal interactive'),
+                    },
                 ),
-                #set_icon(volume_ico, group_colors[2]),
+                #set_icon(icons['volume'], group_colors[2]),
                 #widget.PulseVolume(
                 #    foreground=theme['foreground'],
                 #    background=group_colors[2],
                 #    limit_max_volume=True,
                 #    fontsize=fonts['size'],
                 #),
-                #set_icon(" ", group_colors[2]),
+                set_icon(" ", group_colors[2]),
                 # End Group two
-
 
 
                 # Group three
                 left_triangle(group_colors[2], group_colors[3]),
-                
-                set_icon(" ", group_colors[3]),
-
-                set_icon(" ", group_colors[3]), # nf-fa-window_maximize
+                set_icon(' ', group_colors[3]),
+                set_icon(' ', group_colors[3]), # nf-fa-window_maximize
                 widget.CurrentLayout(
                     foreground=theme['foreground'],
                     background=group_colors[3]
                 ),
-                set_icon(" ", group_colors[3]),
+                set_icon(' ', group_colors[3]),
                 # End Group three
             ],
             bar_theme['size'],
             background=bar_theme['color'],
-            margin=4,
-            border_width=4,
-            border_color='#00000000',
+            #margin=bar_theme['margin'],
+            border_width=bar_theme['border_width'],
+            border_color=bar_theme['color'],
         ),
     ),
 ]
 
 
-##############################################################################
+#################################################################
 # FLOATING LAYOUT
-##############################################################################
+#################################################################
+
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag([mod], 'Button1', lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], 'Button2', lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -455,12 +549,12 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
     ],
     border_focus=float_window['focus'],
     border_normal=float_window['normal'],
@@ -468,7 +562,7 @@ floating_layout = layout.Floating(
     margin=float_window['margin'],
 )
 auto_fullscreen = True
-focus_on_window_activation = "smart"
+focus_on_window_activation = 'smart'
 reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
@@ -480,10 +574,16 @@ wl_input_rules = None
 
 wmname = "LG3D"
 
-##############################################################################
+#################################################################
 # HOOKS
-##############################################################################
+#################################################################
+
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')
     subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+
+@hook.subscribe.client_new
+def client_new(client):
+    if client.name == 'Spotify':
+        client.togroup(9)#('  ')

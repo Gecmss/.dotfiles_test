@@ -143,6 +143,8 @@ alias token='bat ~/Documents/.token'
 alias :q='exit'
 alias cats='cat $(fzf)'
 alias pwmenu='python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py'
+alias pacman='pacman --color always'
+alias yay='yay --color always'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

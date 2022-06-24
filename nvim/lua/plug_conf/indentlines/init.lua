@@ -1,7 +1,7 @@
 local g = vim.g
 
-g.indentLine_enabled = 1
+g.indentLine_enabled = 0
 
 vim.cmd [[
-    :noremap <F5> :IndentLinesToggle<CR>
+    :noremap <F11> :IndentLinesToggle<CR>
 ]]

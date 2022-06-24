@@ -11,7 +11,6 @@ require('settings')
 -- Auto install packer.nvim if not exists
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-print (install_path)
 if fn.empty(fn.glob(install_path)) > 0 then
 	execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
 end
@@ -31,9 +30,9 @@ require('keymaps')
 -- Setup Lua language server using submodule
 require('lsp_lua')
 
+-- Another options, grouping confs in one folder
+require('config')
 
 -- Plugins Configurations
 require('plug_conf')
 
--- Another options, grouping confs in one folder
-require('config')

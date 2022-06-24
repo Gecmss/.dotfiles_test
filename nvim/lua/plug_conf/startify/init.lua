@@ -30,8 +30,8 @@ g.startify_bookmarks = {
      { b = '~/.bashrc'},
      { c = '~/.config/qtile/config.py'},
      { d = '~/.config/qutebrowser'},
-     { n = '~/.config/nvim'},
-     { r = '~/.config/ranger/rc.conf'},
+     { i = '~/.config/nvim/init.lua'},
+     { r = '~/.config/ranger'},
      { z = '~/.zshrc'},
 }
 

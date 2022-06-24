@@ -14,3 +14,13 @@ map('i', '(', '()<Esc>ha')
 map('i', '{', '{}<Esc>ha')
 map('i', '[', '[]<Esc>ha')
 
+-- Buffers
+map('n', 'bn', '<cmd>bn<CR>')
+map('n', 'bp', '<cmd>bp<CR>')
+map('n', 'bd', '<cmd>bd<CR>')
+
+-- Change dir to actual dir
+map('n', 'cd', '<cmd>cd %:p:h<CR>')
+
+-- Telescope projects
+map('n', '<Leader>p', '<cmd>Telescope project<CR>')

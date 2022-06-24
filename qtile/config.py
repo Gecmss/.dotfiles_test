@@ -12,8 +12,39 @@ terminal = 'alacritty'
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
 
+
+
 #################################################################
 # CUSTOM COLORS, ICONS AND THEMES
+#################################################################
+
+# COLORS ########################################################    
+# Special Colors
+background=     '#0f111b'
+foreground=     '#ecf0c1'
+visualSel=     '#1b1c36'
+cursorLine=     '#16172d'
+
+# Base Colors
+red=            '#e33400'
+orange=         '#e39400'
+green=          '#5ccc96'
+green2=         '#67bf95'
+yellow=         '#f2ce00'
+purple=         '#b3a1e6'
+purple2=        '#7a5ccc'
+darkPurp=       '#30365F'
+darkPurp2=      '#686f9a'
+cyan=           '#00a3cc'
+magenta=        '#ce6f8f'
+
+
+# Coloration
+pureWhite=      '#ffffff'
+pureBlack=      '#000000'
+grey=           '#818596'
+grey2=          '#c1c3cc'
+
 #################################################################
 
 fonts = {
@@ -23,50 +54,50 @@ fonts = {
 }
 
 bar_theme = {
-    'color': '#00000000', #020203
+    'color': background, #020203 #060814 
     'size': 24,
     'margin': 6,
     'border_width': 0,
 }
 
 theme = {
-    'foreground': '#000000',
-    'background': '#0A0E14',
-    'active': '#FEE05C',
-    'inactive': '#6840BB',
+    'foreground': pureBlack,
+    'background': background,
+    'active': green,
+    'inactive': purple2,
     'icon_size': 18,
 }
 
 group_box = {
-    'foreground': '#000000',
-    'background': '#000000',
+    'foreground': foreground,
+    'background': pureBlack,
     'disable_grab': True,
     'highlight': 'text',
     'urgent': 'text',
-    'urgent_color': '#FF5555',
-    'this_current_screen_border': '#E1AD01',
-    'this_screen_border': '#82930F',
-    'other_current_screen_border': '#44435A',
-    'other_screen_border': '#44435A',
+    'urgent_color': red,
+    'this_current_screen_border': orange,
+    'this_screen_border': magenta,
+    'other_current_screen_border': magenta,
+    'other_screen_border': green,
     'border_width': 1,
 }
 
 window_name = {
-    'text_color': '#020203', #BD93F9
-    'background': '#00000000', #090300
+    'text_color': green, #BD93F9
+    'background': background, #090300
     'max_chars': 32,
 }
 
 group_colors = {
-    1: '#7D78DE', #7D78DE
-    2: '#6840BB',
-    3: '#82930F', #82930F
-    4: '#FEE05C',
+    1: magenta, #7D78DE
+    2: darkPurp2,
+    3: darkPurp, #82930F
+    4: orange,
 }
 
 float_window = {
-    'focus': '#82930F',
-    'normal': '#006840BB',
+    'focus': green,
+    'normal': background,
     'border_width': 2,
     'margin': 6
 }
@@ -81,10 +112,10 @@ icons = {
 }
 
 layout_theme = {
-    'foreground': '#000000',
-    'background': '#990A0E14',
-    'active': '#99FEE05C',
-    'inactive': '#996840BB',
+    'foreground': green,
+    'background': background,
+    'active': orange,
+    'inactive': purple2,
 }
 
 #################################################################
@@ -394,7 +425,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.GroupBox(
                     active=theme['active'],
@@ -419,7 +450,7 @@ screens = [
                 right_triangle(bar_theme['color'], group_box['background']),
                 separator(bar_theme['color']),
                 widget.Prompt(
-                    foreground=theme['foreground']
+                    foreground=layout_theme['foreground']
                 ),
                 widget.WindowName(
                     foreground=window_name['text_color'],
@@ -453,7 +484,7 @@ screens = [
                     foreground=theme['foreground'],
                     background=group_colors[1],
                     fmt = '{}',
-                    measure_mem = 'G', #'G', 'M'
+                    measure_mem = 'M', #'G', 'M'
                     #format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     mouse_callbacks = {
                         'Button1': lazy.spawn(terminal + ' --title System -e htop'),
@@ -473,8 +504,6 @@ screens = [
                 ),
                 set_icon(' ', group_colors[1]),
                 # End Group one
-                
-
 
                 # Group two
                 left_triangle(group_colors[1], group_colors[2]),
@@ -511,12 +540,9 @@ screens = [
                 # End Group two
 
 
-
                 # Group three
                 left_triangle(group_colors[2], group_colors[3]),
-                
                 set_icon(' ', group_colors[3]),
-
                 set_icon(' ', group_colors[3]), # nf-fa-window_maximize
                 widget.CurrentLayout(
                     foreground=theme['foreground'],

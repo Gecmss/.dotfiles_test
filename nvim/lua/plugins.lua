@@ -1,28 +1,47 @@
 return require('packer').startup(function()
-
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
     -- Startify
-    use { 'mhinz/vim-startify' }
+    -- use { 'mhinz/vim-startify' }.setup(require'alpha.themes.dashboard'.config)
+
+    -- Dashboard
+    use {
+        'goolord/alpha-nvim',
+        config = function ()
+            require'plug_conf.alpha'
+        end
+    }
 
     -- Devicons
     use { 'ryanoasis/vim-devicons' }
 
     -- Color scheme
-    use { 'sainnhe/gruvbox-material' }
-    use { 'ghifarit53/tokyonight-vim' }
+    use { 'pineapplegiant/spaceduck' }
+    use { 'folke/tokyonight.nvim' }
+    use { 
+        'mcchrish/zenbones.nvim',
+        requires = {
+            'rktjmp/lush.nvim'
+        }
+    }
+
 
     -- Fuzzy finder
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-lua/plenary.nvim' },
+        }
     }
-
+    use { 'nvim-telescope/telescope-project.nvim' }
+    use { 'nvim-telescope/telescope-file-browser.nvim' }
+    
     -- Comments
     use { 'tpope/vim-commentary' }
 
-    --Indent lines
+    --Indent sharkdp/fd
     use { 'Yggdroot/indentLine' }
 
     -- Nerd Tree
@@ -50,8 +69,26 @@ return require('packer').startup(function()
     use { 'vim-airline/vim-airline' }
     use { 'vim-airline/vim-airline-themes' }
 
+    use {
+        {
+            "williamboman/nvim-lsp-installer",
+            config = function ()
+                require("nvim-lsp-installer").setup {}
+            end
+        },
+        {
+            "neovim/nvim-lspconfig",
+            after = "nvim-lsp-installer",
+            config = function()
+                local lspconfig = require("lspconfig")
+                lspconfig.sumneko_lua.setup {}
+                --- ...
+            end
+        }
+    }
+
     -- AutoCompletion
-    use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+    use 'neovim/nvim-lsp'
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp

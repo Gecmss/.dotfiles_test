@@ -3,8 +3,6 @@ local utils = require('utils')
 local cmd = vim.cmd
 local indent = 4
 
-vim.g.neovide_cursor_vfx_mode = 'pixiedust'
-
 cmd 'syntax enable'
 cmd 'filetype plugin indent on'
 utils.opt('b', 'expandtab', true)
