@@ -2,7 +2,9 @@ local utils = require('utils')
 
 local map = utils.map
 
+-- Custom Maps
 map('n', '<C-l>', '<cmd>noh<CR>') -- Clear highlights
+map('n', ';', 'A;<esc>')  -- put a ;
 -- map('i', 'ii', '<Esc>')           -- ii to escape
 
 -- Term maps

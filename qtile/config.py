@@ -526,7 +526,8 @@ screens = [
                     background=group_colors[2],
                     format=' %d/%m/%Y %a  %H:%M %p', # nf-mdi-calendar_today nf-fa-clock_o  ... %H is for 24 format %I is 12 hour format 
                     mouse_callbacks={
-                        'Button1': lazy.spawn(terminal + ' --title Calendar -e khal interactive'),
+                        'Button1': lazy.spawn('gsimplecal'),
+                        'Button3': lazy.spawn(terminal + ' --title Calendar -e khal interactive'),
                     },
                 ),
                 #set_icon(icons['volume'], group_colors[2]),
