@@ -31,5 +31,7 @@ endfunction
 
 noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
 noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
+noremap <silent> <c-K> :call <SID>swap_up()<CR>
+noremap <silent> <c-J> :call <SID>swap_down()<CR>
 noremap <silent> <F4> :set rnu!<CR>
 noremap <silent> <F3> :FZF <CR>

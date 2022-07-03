@@ -27,6 +27,7 @@ vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
 
 -- Undodir
 vim.cmd [[
+set colorcolumn=120
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')
     " define a path to store persistent_undo files.

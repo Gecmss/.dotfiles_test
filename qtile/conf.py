@@ -98,8 +98,3 @@ wmname = "LG3D"
 def autostart():
     home = os.path.expanduser('~')
     subprocess.Popen([home + '/.config/qtile/autostart.sh'])
-
-@hook.subscribe.client_new
-def client_new(client):
-    if client.name == 'Spotify':
-        client.togroup(9)#('  ')
