@@ -7,12 +7,12 @@ from libqtile.lazy import lazy
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
 
-from keys import keys
-from groups import groups
-from common import *
-from layouts import layouts
-from screens import screens
-from theme import float_window, fonts
+from modules.keys import keys
+from modules.groups import groups
+from modules.common import *
+from modules.layouts import layouts
+from modules.screens import screens
+from modules.theme import float_window, fonts
 
 widget_defaults = dict(
     font=fonts['default'],

@@ -1,9 +1,9 @@
 from libqtile import bar, widget
 from libqtile.command import lazy
 
-from theme import *
-from utils import *
-from common import *
+from modules.theme import *
+from modules.utils import *
+from modules.common import *
 
 main_bar = bar.Bar(
         [

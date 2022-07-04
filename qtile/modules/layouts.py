@@ -1,5 +1,5 @@
 from libqtile import layout 
-from theme import *
+from modules.theme import *
 
 
 layouts = [
