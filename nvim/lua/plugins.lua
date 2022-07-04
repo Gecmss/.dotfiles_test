@@ -8,9 +8,10 @@ return require('packer').startup(function()
     -- Dashboard
     use {
         'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
         config = function ()
             require'plug_conf.alpha'
-        end
+        end,
     }
 
     -- Devicons
@@ -19,13 +20,12 @@ return require('packer').startup(function()
     -- Color scheme
     use { 'pineapplegiant/spaceduck' }
     use { 'folke/tokyonight.nvim' }
-    use { 
+    use {
         'mcchrish/zenbones.nvim',
         requires = {
             'rktjmp/lush.nvim'
         }
     }
-
 
     -- Fuzzy finder
     use {
@@ -37,7 +37,7 @@ return require('packer').startup(function()
     }
     use { 'nvim-telescope/telescope-project.nvim' }
     use { 'nvim-telescope/telescope-file-browser.nvim' }
-    
+
     -- Comments
     use { 'tpope/vim-commentary' }
 
@@ -68,6 +68,12 @@ return require('packer').startup(function()
     -- Airline
     use { 'vim-airline/vim-airline' }
     use { 'vim-airline/vim-airline-themes' }
+
+    -- Toggleterm
+    use {
+        'akinsho/toggleterm.nvim',
+        tag = 'v1.*',
+    }
 
     use {
         {

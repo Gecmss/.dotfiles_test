@@ -25,12 +25,7 @@ keys = [
     Key([mod, 'control'], 'k', lazy.layout.grow_up(), desc='Grow window up'),
     Key([mod], 'n', lazy.layout.normalize(), desc='Reset all window sizes'),
 
-    Key(
-        [mod, 'shift'],
-        'Return',
-        lazy.layout.toggle_split(),
-        desc='Toggle between split and unsplit sides of stack',
-    ),
+    Key([mod, 'shift'], 'Return', lazy.layout.toggle_split(), desc='Toggle between split and unsplit sides of stack'),
     Key([mod], 'Return', lazy.spawn(terminal), desc='Launch terminal'),
 
     # Toggle between different layouts as defined below
@@ -42,8 +37,6 @@ keys = [
     Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
     Key([mod], 'r', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
-    
-
 
     # Controls
     Key([], 'Print', lazy.spawn("scrot -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot'),
@@ -55,19 +48,13 @@ keys = [
     Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Skip to next'),
     Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Skip to previous'),
 
-    #Power Menu
-    # Key([mod], 'z', lazy.spawn("python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py"), desc='Lauch Power Menu'),
-    
-
-    # Keys to lauch apps
-
     # Rofi menu
     Key([mod], 'm', lazy.spawn('rofi -show drun'), desc='Launch Rofi menu'),
     Key(['mod1'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
-    
+
     # Firefox
     Key([mod], 'b', lazy.spawn('firefox'), desc='Launch firefox'),
-    
+
     # Ranger
     Key([mod], 'f', lazy.spawn(terminal + ' --title Ranger -e ranger'), desc='Launch Ranger file explorer'),
 
@@ -94,7 +81,7 @@ keys = [
 
     # NeoVide
     Key([mod], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
-    
+
     # Nvim    
     Key([mod, 'control'], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
 

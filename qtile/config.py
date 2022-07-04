@@ -12,7 +12,15 @@ from groups import groups
 from common import *
 from layouts import layouts
 from screens import screens
-from theme import float_window
+from theme import float_window, fonts
+
+widget_defaults = dict(
+    font=fonts['default'],
+    fontsize=fonts['size'],
+    padding=1,
+)
+extension_defaults = widget_defaults.copy()
+
 
 #################################################################
 # DropDowns

@@ -5,13 +5,6 @@ from theme import *
 from utils import *
 from common import *
 
-widget_defaults = dict(
-    font=fonts['default'],
-    fontsize=fonts['size'],
-    padding=1,
-)
-extension_defaults = widget_defaults.copy()
-
 main_bar = bar.Bar(
         [
             widget.GroupBox(

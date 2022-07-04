@@ -1,6 +1,3 @@
-local M = {}
-
-function M.setup()
     local status_ok, alpha = pcall(require, 'alpha')
     if not status_ok then
         return
@@ -68,6 +65,3 @@ function M.setup()
 
   dashboard.opts.opts.noautocmd = true
   alpha.setup(dashboard.opts)
-end
-
-return M
