@@ -1,4 +1,4 @@
-from libqtile import layout 
+from libqtile import layout
 from modules.theme import *
 
 

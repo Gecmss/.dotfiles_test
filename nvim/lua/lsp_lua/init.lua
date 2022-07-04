@@ -32,6 +32,26 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+capabilities.textDocument.completion.completionItem = {
+   documentationFormat = { "markdown", "plaintext" },
+   snippetSupport = true,
+   preselectSupport = true,
+   insertReplaceSupport = true,
+   labelDetailsSupport = true,
+   deprecatedSupport = true,
+   commitCharactersSupport = true,
+   tagSupport = { valueSet = { 1 } },
+   resolveSupport = {
+      properties = {
+         "documentation",
+         "detail",
+         "additionalTextEdits",
+      },
+   },
+}
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
@@ -43,9 +63,10 @@ local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
 local lspconfig = require('lspconfig')
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
+    on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
   }
 end
 
+require 'lsp_lua.providers.pyright'
