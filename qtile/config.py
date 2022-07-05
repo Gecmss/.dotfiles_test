@@ -7,12 +7,12 @@ from libqtile.lazy import lazy
 # This shit requires python-psutils, Ubuntu Mono Nerd Font and Powerline fonts
 # requires scrot too
 
-from modules.keys import keys
-from modules.groups import groups
-from modules.common import *
-from modules.layouts import layouts
-from modules.screens import screens
-from modules.theme import float_window, fonts
+from settings.keys import keys
+from settings.groups import groups
+from settings.common import *
+from settings.layouts import layouts
+from settings.screens import screens
+from settings.theme import float_window, fonts
 
 widget_defaults = dict(
     font=fonts['default'],
@@ -61,7 +61,7 @@ keys.extend(
 )
 
 #################################################################
-# FLOATING LAYOUT
+# MOUSE
 #################################################################
 
 mouse = [
@@ -90,12 +90,13 @@ floating_layout = layout.Floating(
     border_width=float_window['border_width'],
     margin=float_window['margin'],
 )
+
 auto_fullscreen = True
 focus_on_window_activation = 'smart'
 reconfigure_screens = True
 auto_minimize = True
 wl_input_rules = None
-wmname = "LG3D"
+wmname = "Qtile"
 
 #################################################################
 # HOOKS

@@ -1,5 +1,5 @@
 from libqtile import widget
-from modules.theme import *
+from settings.theme import *
 
 #################################################################
 # CUSTOM FUNCTIONS

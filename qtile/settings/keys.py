@@ -1,8 +1,12 @@
 from libqtile.config import Key
 from libqtile.command import lazy
 
-from modules.groups import groups
-from modules.common import *
+from settings.groups import groups
+from settings.common import *
+
+#################################################################
+# KEYS
+#################################################################
 
 keys = [
     # Focus

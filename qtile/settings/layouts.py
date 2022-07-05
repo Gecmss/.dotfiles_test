@@ -1,6 +1,10 @@
 from libqtile import layout
-from modules.theme import *
+from libqtile.config import Match
+from settings.theme import *
 
+#################################################################
+# LAYOUTS
+#################################################################
 
 layouts = [
     layout.Columns(
