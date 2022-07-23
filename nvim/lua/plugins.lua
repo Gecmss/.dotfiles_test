@@ -85,6 +85,8 @@ return require('packer').startup(function()
         tag = 'v1.*',
     }
 
+    use { 'mfussenegger/nvim-dap' }
+
     use {
         {
             "williamboman/nvim-lsp-installer",

@@ -1,0 +1,20 @@
+Here will be all the commands and instructions of tmux that I learn
+
+->: then. for example:
+	Ctrl + b -> c means Ctrl and b at the same time, then I press 
+
+
+Ctrl + b: Start the command mode
+
+With the command mode:
+	# Sessions (tabs)
+	-> c = Create a new session
+	-> , = Change name to a session
+	-> w = List all sessions
+
+	# Splits
+	-> " = Create a new horizontal split
+	-> % = Create a new vertical split
+	-> x = Kill the select split
+	-> h, j, k, l = navigate in the splits
+	->Ctrl + o = rotate splits

@@ -20,11 +20,6 @@ spaceduck = {
 }
 
 catppuccin = {
-    'background': '#1e1e2e',
-    'foreground': '#f5a97f',
-    'white': '#ffffff',
-    'black': '#000000',
-    'grey':  '#808080',
     0: '#d8dee9', # Colour 0
     1: '#1e1e2e', # Colour 1
     2: '#313244', # Colour 2
@@ -36,8 +31,6 @@ catppuccin = {
     8: '#c9cbff', # Colour 8
     9: '#b5e8e0', # Colour 9
     10:'#b1e1a6', # Colour 10
-    11:'#1b1c36', # visualSel
-    12:'#16172d', # cursorLine
 }
 
 palette = spaceduck

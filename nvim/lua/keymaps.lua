@@ -26,3 +26,4 @@ map('n', 'cd', '<cmd>cd %:p:h<CR>')
 
 -- Telescope projects
 map('n', '<Leader>p', '<cmd>Telescope project<CR>')
+map('n', '<Leader>t', '<cmd>TodoTelescope<CR>')
