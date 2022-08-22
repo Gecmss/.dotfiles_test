@@ -36,10 +36,10 @@
 
     local function footer()
         -- Number of plugins
-        local total_plugins = #vim.tbl_keys(packer_plugins)
+        packer_plugins = vim.fn.len(vim.fn.globpath(vim.fn.stdpath "data" .. "/site/pack/packer/start", "*", 0, 1))
         local datetime = os.date '%d-%m-%Y %H:%M:%S'
         local plugins_text = '   '
-            .. total_plugins
+            .. packer_plugins
             .. ' plugins'
             .. '   v'
             .. vim.version().major

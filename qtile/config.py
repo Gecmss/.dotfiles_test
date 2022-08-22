@@ -31,7 +31,7 @@ groups.extend([
                [
                    DropDown(
                        'term',
-                       'alacritty',
+                       terminal,
                        opacity=1,
                        height=0.5,
                        width=0.5,

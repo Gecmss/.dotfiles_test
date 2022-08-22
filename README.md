@@ -92,4 +92,16 @@ localectl set-x11-keymap --no-convert latam pc105 deadtilde
 ```
 
 
+------------------------------------------------------------
+
+Things for the future:
+
+-> Awesome
+-> implement pywal
+------------------------------------------------------------
+
+Things for the future:
+
+-> Awesome
+-> implement pywal
 

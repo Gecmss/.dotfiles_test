@@ -15,6 +15,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Plugins
 plugins=(
 	archlinux
+    vi-mode
 	git
 	github
 	python
@@ -35,8 +36,8 @@ source $ZSH/oh-my-zsh.sh
 # Custom Settings
 ###########################################################
 export EDITOR='nvim'
-export TERM=alacritty
-export TERMINAL=alacritty
+export TERM='kitty'
+export TERMINAL='kitty'
 
 
 unsetopt autopushd
