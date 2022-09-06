@@ -44,9 +44,9 @@ groups.extend([
                        'spotify',
                        opacity=1,
                        height=0.75,
-                       width=0.5,
-                       x=0.25,
-                       y=0,
+                       width=0.75,
+                       x=0.125,
+                       y=0.125,
 
                    ),
                ]

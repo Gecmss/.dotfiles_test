@@ -9,23 +9,25 @@ for more settings check out
 https://qutebrowser.org/doc/help/settings.html
 """
 # ================== Variables ================================== {{{
-term = 'alacritty'
+term = 'kitty'
 editor = 'nvim'
 browser = 'qutebrowser'
 # }}}
 # ================== Youtube Add Blocking ======================= {{{
-# def filter_yt(info: interceptor.Request):
-#     """Block the given request if necessary."""
-#     url = info.request_url
-#     if (
-#         url.host() == "www.youtube.com"
-#         and url.path() == "/get_video_info"
-#         and "&adformat=" in url.query()
-#     ):
-#         info.block()
+
+def filter_yt(info: interceptor.Request):
+    """Block the given request if necessary."""
+    url = info.request_url
+    if (
+        url.host() == "www.youtube.com"
+        and url.path() == "/get_video_info"
+        and "&adformat=" in url.query()
+    ):
+        info.block()
 
 
-# interceptor.register(filter_yt)
+interceptor.register(filter_yt)
+c.content.blocking.method = 'both'
 # }}}
 # =================== Default file chooser ====== {{{
 
@@ -196,7 +198,6 @@ if xresources["*.background"] != "#ffffff":
     c.hints.border = "1px solid #FFFFFF"
 
 config.load_autoconfig()
-
 # USERSCRIPTS
 #
 # personally I use

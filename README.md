@@ -13,7 +13,7 @@ picom
 alacritty
 nerd-fonts-ubuntu-mono
 scrot
-python-psutils
+python-psutil
 gnome-screenshot
 rofi
 udiskie
@@ -21,7 +21,7 @@ nitrogen
 alsamixer
 pulseaudio
 network-manager-applet
-volumeico
+volumeicon
 nodejs
 zsh
 tmux

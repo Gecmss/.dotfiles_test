@@ -38,6 +38,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export TERM='kitty'
 export TERMINAL='kitty'
+export PATH="$PATH:$HOME/.local/bin"
 
 
 unsetopt autopushd
@@ -61,13 +62,21 @@ alias trashfolder='cd ~/.local/share/Trash/files'
 alias trash='rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*'
 alias arch='alacritty -e htop & alacritty -e ranger & clear'
 alias pose='arch && neo'
-alias token='bat ~/Documents/.token'
+alias token='cat ~/Documents/.token'
 alias pwmenu='python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py'
 alias pacman='pacman --color always'
+alias pls='clear && please'
 alias yay='yay --color always'
 alias pleasec='clear && please'
 alias work='cd ~/Workspace'
 alias rcd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+alias xb20='brightnessctl set 20%'
+alias xb50='brightnessctl set 50%'
+alias xb80='brightnessctl set 80%'
+alias xbinc='brightnessctl set +10%'
+alias xbdec='brightnessctl set 10%-'
+alias bton='sudo systemctl start bluetooth'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

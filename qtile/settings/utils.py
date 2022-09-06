@@ -1,3 +1,4 @@
+import subprocess
 from libqtile import widget
 from settings.theme import *
 
@@ -41,3 +42,17 @@ def set_icon(icon, group_color, mouse_callbacks={}):
         background=group_color,
         mouse_callbacks=mouse_callbacks,
     )
+
+def backlight(action):
+    def f(qtile):
+        brightness = int(subprocess.run(['xbacklight', '-get'],
+                                        stdout=subprocess.PIPE).stdout)
+        if brightness != 1 or action != 'dec':
+            if (brightness > 49 and action == 'dec') \
+                                or (brightness > 39 and action == 'inc'):
+                subprocess.run(['xbacklight', f'-{action}', '10',
+                                '-fps', '10'])
+            else:
+                subprocess.run(['xbacklight', f'-{action}', '1'])
+    return f
+

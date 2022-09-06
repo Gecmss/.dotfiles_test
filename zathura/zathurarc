@@ -1,0 +1,9 @@
+# Color
+set default-fg "#ECF0C1"
+set default-bg "#0F111B"
+
+# Clipboard
+set selection-clipboard clipboard
+
+# Sanbox
+# set sandbox strict

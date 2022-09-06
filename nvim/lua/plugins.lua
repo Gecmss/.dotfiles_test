@@ -20,6 +20,7 @@ return require('packer').startup(function()
     -- Color scheme
     use { 'pineapplegiant/spaceduck' }
     use { 'folke/tokyonight.nvim' }
+    use { 'folke/lsp-colors.nvim' }
     use {
         'mcchrish/zenbones.nvim',
         requires = {

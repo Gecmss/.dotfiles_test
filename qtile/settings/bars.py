@@ -81,7 +81,7 @@ main_bar = bar.Bar(
                 mouse_callbacks={
                     'Button1': lazy.spawn(terminal),
                     'Button2': lazy.spawn(terminal + ' -e tmux'),
-                    'Button3': lazy.spawn('xterm'),
+                    'Button3': lazy.spawn('alacritty'),
                 }
             ),
             set_icon(' ', group_colors[1]),

@@ -5,7 +5,7 @@ setxkbmap latam -option caps:swapescape & # Key map with caps and scape alternat
 
 
 # Resolution
-# xrandr --output DVI-D-1 --off --output HDMI-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output VGA-1 --off
+xrandr --output eDP-1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output HDMI-1 --off
 
 #System Icons
 
@@ -17,6 +17,9 @@ nm-applet &
 
 #Volume
 volumeicon &
+
+#Battery
+cbatticon -u 5 &
 
 #Wallpaper
 nitrogen --restore &

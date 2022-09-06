@@ -7,7 +7,7 @@ from settings.colorscheme import palette
 fonts = {
     'default': 'Ubuntu Mono Nerd Font',
     'powerline': 'Source Code Pro',
-    'size': 16
+    'size': 18
 }
 
 bar_theme = {

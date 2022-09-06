@@ -23,10 +23,10 @@ utils.opt('w', 'number', true)
 utils.opt('o', 'clipboard','unnamed,unnamedplus')
 
 -- Highlight on yank
-vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
+cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
 
 -- Undodir
-vim.cmd [[
+cmd [[
 set colorcolumn=120
 " guard for distributions lacking the persistent_undo feature.
 if has('persistent_undo')

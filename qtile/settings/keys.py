@@ -3,6 +3,7 @@ from libqtile.command import lazy
 
 from settings.groups import groups
 from settings.common import *
+from settings.utils import backlight
 
 #################################################################
 # KEYS
@@ -47,14 +48,20 @@ keys = [
     Key(['shift'], 'Print', lazy.spawn("scrot -s -e 'mv ~/*.png ~/Images/Screenshots/%Y-%m-%d-%T-screenshot.png'"), desc='Screenshot -select'),
     Key(['control'], 'Print', lazy.spawn('gnome-screenshot -i'), desc='Gnome Screenshot'),
 
-    # Spotify Control
-    Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause'), desc='Play or Pause Player'),
-    Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Skip to next'),
-    Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Skip to previous'),
+    # # Spotify Control
+    # Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause'), desc='Play or Pause Player'),
+    # Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Skip to next'),
+    # Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Skip to previous'),
+    Key([mod], 'F1', lazy.spawn('playerctl play-pause'), desc='Play or Pause Player'),
+    Key([mod], 'F3', lazy.spawn('playerctl next'), desc='Skip to next'),
+    Key([mod], 'F2', lazy.spawn('playerctl previous'), desc='Skip to previous'),
 
+    # Screen
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
     # Rofi menu
     Key([mod], 'm', lazy.spawn('rofi -show drun'), desc='Launch Rofi menu'),
-    Key(['mod1'], 'Tab', lazy.spawn('rofi -show'), desc='Launch Rofi window menu'),
+    Key(['mod1'], 'Tab', lazy.spawn('rofi -show window'), desc='Launch Rofi window menu'),
 
     # Firefox
     Key([mod], 'b', lazy.spawn('firefox'), desc='Launch firefox'),
@@ -71,11 +78,17 @@ keys = [
     # Spotify    
     Key([mod], 's', lazy.spawn('spotify'), desc='Launch Spotify'),
 
-    # Steam    
-    Key([mod, 'control'], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
-
     # Code    
     Key([mod], 'c', lazy.spawn('code'), desc='Launch Code'),
+
+    # NeoVide
+    Key([mod], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
+
+    # Screenkey
+    Key([mod], 'p', lazy.spawn('screenkey'), desc='Launch screenkey app'),
+
+    # Steam    
+    Key([mod, 'control'], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
 
     # Calibre    
     Key([mod, 'control'], 'c', lazy.spawn('calibre'), desc='Launch Calibre'),
@@ -83,14 +96,11 @@ keys = [
     # Notion
     Key([mod, 'control'], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
-    # NeoVide
-    Key([mod], 'v', lazy.spawn('neovide'), desc='Launch Neovide'),
-
     # Nvim    
     Key([mod, 'control'], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),
 
     # QuteBrowser    
-    Key([mod], 'q', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),
+    Key([mod, 'control'], 'b', lazy.spawn('qutebrowser'), desc='Launch Qutebrowser'),
 ]
 
 for i, group in enumerate(groups):
