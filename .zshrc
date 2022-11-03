@@ -54,22 +54,25 @@ setopt hist_reduce_blanks       # Remove extra blanks from each command added to
 ###########################################################
 # Aliases
 ###########################################################
+ 
 alias :q='exit'
 alias c='clear'
-alias qtc='cd ~/.config/qtile'
-alias neo='clear && neofetch'
-alias trashfolder='cd ~/.local/share/Trash/files'
 alias trash='rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*'
+alias rcd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias pacman='sudo pacman --color always'
+alias yay='yay --color always'
+
+alias work='cd ~/Workspace'
+alias qtc='cd ~/.config/qtile'
+alias trashfolder='cd ~/.local/share/Trash/files'
+
+alias pls='clear && please'
+alias neo='clear && neofetch'
+alias npls='clear && neofetch && please'
 alias arch='alacritty -e htop & alacritty -e ranger & clear'
 alias pose='arch && neo'
+
 alias token='cat ~/Documents/.token'
-alias pwmenu='python3 ~/.dotfiles_test/qtile/extensions/wm_power_menu.py'
-alias pacman='pacman --color always'
-alias pls='clear && please'
-alias yay='yay --color always'
-alias pleasec='clear && please'
-alias work='cd ~/Workspace'
-alias rcd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 alias xb20='brightnessctl set 20%'
 alias xb50='brightnessctl set 50%'

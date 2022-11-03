@@ -50,4 +50,5 @@ endif
 set undolevels=10000 " How many undos
 set undoreload=10000 " number of lines to save for undo
 set nocompatible
+set mouse=
 ]]

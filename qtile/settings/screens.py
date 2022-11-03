@@ -1,6 +1,6 @@
 from libqtile.config import Screen
 
-from settings.bars import main_bar
+from settings.bars import *
 
 #################################################################
 # SCREENS

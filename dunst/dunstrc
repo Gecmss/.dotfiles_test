@@ -68,7 +68,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-    transparency = 5
+    transparency = 30
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -243,7 +243,7 @@
     class = Dunst
 
     # Define the corner radius of the notification window
-    corner_radius = 0
+    corner_radius = 20
 
     # Ignore the dbus closeNotification message.
     ignore_dbusclose = false
@@ -255,9 +255,9 @@
     force_xinerama = false
 
     ### Mouse
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -275,6 +275,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#0F111B"
     foreground = "#ECF0C1"
+    frame_color = "#ECF0C1"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon

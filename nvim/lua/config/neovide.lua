@@ -14,6 +14,6 @@ vim.cmd [[
         set background=dark
         set termguicolors
         let g:airline_theme='spaceduck'
-        set guifont=UbuntuMono\ Nerd\ Font:h12
+        set guifont=UbuntuMono\ Nerd\ Font:h10
     endif
 ]]

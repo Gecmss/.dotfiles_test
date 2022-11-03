@@ -49,6 +49,16 @@ groups.extend([
                        y=0.125,
 
                    ),
+                   DropDown(
+                       'pavu',
+                       'pavucontrol',
+                       opacity=1,
+                       height=0.6,
+                       width=0.6,
+                       x=0.2,
+                       y=0.0,
+
+                   ),
                ]
     )
 ])
@@ -57,6 +67,7 @@ keys.extend(
     [
         Key([], 'F2', lazy.group['scratch'].dropdown_toggle('term')),
         Key([], 'F10', lazy.group['scratch'].dropdown_toggle('spot')),
+        Key([alt], 'F2', lazy.group['scratch'].dropdown_toggle('pavu')),
     ]
 )
 

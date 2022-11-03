@@ -20,7 +20,7 @@ bar_theme = {
 theme = {
     'foreground': palette["black"],
     'background': palette["background"],
-    'active': palette[4],
+    'active': palette['foreground'],
     'inactive': palette[1],
     'icon_size': 18,
 }
@@ -46,9 +46,9 @@ window_name = {
 }
 
 group_colors = {
-    1: palette[7], #7D78DE
-    2: palette[3],
-    3: palette[2], #82930F
+    1: palette[3], #7D78DE
+    2: palette[2],
+    3: palette[10], #82930F
     4: palette[9],
 }
 
@@ -72,5 +72,5 @@ layout_theme = {
     'foreground': palette["foreground"],
     'background': palette["background"],
     'active': palette[9],
-    'inactive': palette[1],
+    'inactive': palette[2],
 }

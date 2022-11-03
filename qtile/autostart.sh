@@ -28,4 +28,4 @@ nitrogen --restore &
 picom --vsync --backend glx --xrender-sync-fence &
 
 # Conky
-conky --pause=6 &
+# conky --pause=3 &
