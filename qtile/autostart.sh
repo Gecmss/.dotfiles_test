@@ -22,7 +22,10 @@ volumeicon &
 cbatticon -u 5 &
 
 #Wallpaper
-nitrogen --restore &
+# nitrogen --restore &
+
+# Live Wallpaper
+xwinwrap -ov -g 1600x900+0+0 -- mpv -wid WID ~/Images/Wallpapers/Row-wallpaper.mp4 --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --no-audio --panscan=1.0 --no-input-default-bindings &
 
 #Picom
 picom --vsync --backend glx --xrender-sync-fence &

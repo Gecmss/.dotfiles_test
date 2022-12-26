@@ -65,8 +65,8 @@ groups.extend([
 
 keys.extend(
     [
-        Key([], 'F2', lazy.group['scratch'].dropdown_toggle('term')),
-        Key([], 'F10', lazy.group['scratch'].dropdown_toggle('spot')),
+        Key([shift], 'F2', lazy.group['scratch'].dropdown_toggle('term')),
+        Key([shift], 'F10', lazy.group['scratch'].dropdown_toggle('spot')),
         Key([alt], 'F2', lazy.group['scratch'].dropdown_toggle('pavu')),
     ]
 )

@@ -16,7 +16,8 @@ def separator(color):
 
 def left_triangle(ng_color, pg_color):
     return widget.TextBox(
-        text="",
+        text="",
+        # text="",
         fontsize=bar_theme['size'] + 1,
         font=fonts['powerline'],
         foreground=pg_color,
@@ -26,7 +27,8 @@ def left_triangle(ng_color, pg_color):
 
 def right_triangle(ng_color, pg_color):
     return widget.TextBox(
-        text="",
+        text="",
+        # text="",
         fontsize=bar_theme['size'] + 1,
         font=fonts['powerline'],
         foreground=pg_color,
