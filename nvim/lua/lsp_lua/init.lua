@@ -88,7 +88,7 @@ local lsp_flags = {
 }
 
 -- Enable some language servers with the additional completion capabilities
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'html', 'cssls', 'vuels', 'pyright', 'tsserver' }
 
 local lspconfig = require('lspconfig')
 for _, lsp in ipairs(servers) do
@@ -100,4 +100,4 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require 'lsp_lua.providers.pyright'
+require 'lsp_lua.providers'

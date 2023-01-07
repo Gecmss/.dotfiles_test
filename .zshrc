@@ -58,9 +58,13 @@ setopt hist_reduce_blanks       # Remove extra blanks from each command added to
 alias :q='exit'
 alias c='clear'
 alias trash='rm -rf ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*'
+
 alias rcd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias pacman='sudo pacman --color always'
 alias yay='yay --color always'
+alias v='nvim'
+alias n='neovide'
+
 
 alias work='cd ~/Workspace'
 alias qtc='cd ~/.config/qtile'
@@ -74,12 +78,15 @@ alias pose='arch && neo'
 
 alias token='cat ~/Documents/.token'
 
+alias xb10='brightnessctl set 10%'
 alias xb20='brightnessctl set 20%'
 alias xb50='brightnessctl set 50%'
 alias xb80='brightnessctl set 80%'
+alias xb100='brightnessctl set 100%'
 alias xbinc='brightnessctl set +10%'
 alias xbdec='brightnessctl set 10%-'
 alias bton='sudo systemctl start bluetooth'
+alias dipv6='sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
