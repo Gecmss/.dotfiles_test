@@ -25,10 +25,13 @@ cbatticon -u 5 &
 # nitrogen --restore &
 
 # Live Wallpaper
-xwinwrap -ov -g 1600x900+0+0 -- mpv -wid WID ~/Images/Wallpapers/Row-wallpaper.mp4 --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --no-audio --panscan=1.0 --no-input-default-bindings &
+xwinwrap -ov -g 1600x900+0+0 -- mpv -wid WID ~/Images/Row-wallpaper.mp4 --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --no-audio --panscan=1.0 --no-input-default-bindings &
 
 #Picom
 picom --vsync --backend glx --xrender-sync-fence &
 
 # Conky
 # conky --pause=3 &
+
+# A kitty shell with some application
+# kitty -e zsh -c 'neofetch;zsh -i' &

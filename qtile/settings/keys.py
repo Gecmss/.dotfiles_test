@@ -3,7 +3,6 @@ from libqtile.command import lazy
 
 from settings.groups import groups
 from settings.common import *
-from settings.utils import backlight
 
 #################################################################
 # KEYS
@@ -58,11 +57,13 @@ keys = [
 
     # Screen
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
+    Key([],"XF86MonBrightnessDown", lazy.spawn('brightnessctl set 5%-')),
+    Key([shift], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
+    Key([shift],"XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+
     # Rofi menu
     Key([mod], 'm', lazy.spawn('rofi -show drun'), desc='Launch Rofi menu'),
     Key([alt], 'Tab', lazy.spawn('rofi -show window'), desc='Launch Rofi window menu'),
-
     Key([alt, ctrl], 'Delete', lazy.spawn('rofi -show p -modi p:rofi-power-menu -theme spaceduck-right'), desc='Launch Rofi window menu'),
 
     # Firefox
@@ -89,6 +90,9 @@ keys = [
     # Obsidian
     Key([mod], 'o', lazy.spawn('obsidian'), desc='Lauch Obsidian'),
 
+    # Zathura
+    Key([mod], 'z', lazy.spawn('zathura'), desc='Lauch Zathura'),
+
     # Screenkey
     Key([mod, ctrl], 'p', lazy.spawn('screenkey'), desc='Launch screenkey app'),
 
@@ -96,13 +100,10 @@ keys = [
     Key([mod], 'p', lazy.spawn('pavucontrol'), desc='Launch Volume center'),
 
     # Steam    
-    Key([mod, ctrl], 's', lazy.spawn('flatpak run com.valvesoftware.Steam'), desc='Launch Steam'),
+    Key([mod, ctrl], 'f', lazy.spawn('fluent-reader'), desc='Launch Fluent Reader'),
 
     # Calibre    
     Key([mod, ctrl], 'c', lazy.spawn('calibre'), desc='Launch Calibre'),
-
-    # Notion
-    Key([mod, ctrl], "n", lazy.spawn('notion-app-enhanced'), desc='Launch Notion'),
 
     # Nvim    
     Key([mod, ctrl], 'v', lazy.spawn(terminal + ' --title Nvim -e nvim'), desc='Launch Nvim'),

@@ -5,3 +5,6 @@ set selection-clipboard clipboard
 # set sandbox strict
 
 include spaceduck
+# include total-spaceduck
+
+# You can change the total or not, using Ctrl + R

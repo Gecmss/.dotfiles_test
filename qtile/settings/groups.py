@@ -19,12 +19,12 @@ from libqtile.config import Group, Match
 groups = [
     Group('  '),
     Group('  '),
+    Group('  '),
     Group('  '),
     Group('  '),
-    Group('  '),
     Group('  '),
     Group('  '),
+    Group('  ', matches=[Match(wm_class='thunderbird')]),
     Group('  '),
-    Group('  ', matches=[Match(wm_class='spotify')]),
-    Group('  '),
+    Group('  '),
 ]
